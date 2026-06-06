@@ -126,7 +126,7 @@ label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
 .section-title{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);}
 .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px);}
-.modal-backdrop.open{display:flex;}
+.modal-backdrop.open{display:flex!important;}
 .modal{background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius) var(--radius) 0 0;padding:1.75rem;width:100%;max-width:560px;max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;}
 @media(min-width:600px){.modal-backdrop{align-items:center;}.modal{border-radius:var(--radius);max-width:480px;max-height:90vh;}}
 input,select,textarea{font-size:16px!important;}
@@ -151,7 +151,13 @@ input,select,textarea{font-size:16px!important;}
 .text-muted{color:var(--text2);}.text-sm{font-size:12px;}
 .flex{display:flex;}.items-center{align-items:center;}.justify-between{justify-content:space-between;}
 .gap-8{gap:8px;}.gap-12{gap:12px;}
-@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr;}.stat-row{flex-wrap:wrap;}.nav-tabs{display:none;}.span-2{grid-column:span 1;}}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr;}.stat-row{flex-wrap:wrap;}.nav-tabs{display:none!important;}.span-2{grid-column:span 1;}.app{padding:1rem 1rem 90px;}.bottom-nav{display:flex!important;}}
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:50;background:var(--bg);border-top:1px solid var(--border2);padding:6px 0 calc(6px + env(safe-area-inset-bottom));justify-content:space-around;backdrop-filter:blur(12px);}
+.bottom-nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 8px;border:none;background:none;color:var(--text3);cursor:pointer;font-family:var(--font-body);font-size:10px;font-weight:500;min-width:44px;min-height:44px;justify-content:center;-webkit-tap-highlight-color:transparent;}
+.bottom-nav-btn.active{color:var(--accent);}
+.bottom-nav-btn .bnav-icon{font-size:18px;line-height:1;}
+.back-btn{display:none;align-items:center;gap:6px;background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:15px;cursor:pointer;padding:4px 0;margin-bottom:16px;-webkit-tap-highlight-color:transparent;}
+@media(max-width:768px){.back-btn{display:flex;}}
 </style>
 </head>
 <body>
@@ -173,6 +179,16 @@ input,select,textarea{font-size:16px!important;}
     <button class="icon-btn" onclick="showPage('settings')" title="Settings">⚙️</button>
   </div>
 </nav>
+
+<!-- BOTTOM NAV (mobile only) -->
+<div class="bottom-nav" id="bottom-nav">
+  <button class="bottom-nav-btn active" id="bn-home" onclick="showPage('home')"><span class="bnav-icon">🏠</span>Home</button>
+  <button class="bottom-nav-btn" id="bn-goals" onclick="showPage('goals')"><span class="bnav-icon">🎯</span>Goals</button>
+  <button class="bottom-nav-btn" id="bn-training" onclick="showPage('training')"><span class="bnav-icon">🏃</span>Train</button>
+  <button class="bottom-nav-btn" id="bn-portfolio" onclick="showPage('portfolio')"><span class="bnav-icon">📈</span>Portfolio</button>
+  <button class="bottom-nav-btn" id="bn-health" onclick="showPage('health')"><span class="bnav-icon">⚖️</span>Health</button>
+  <button class="bottom-nav-btn" id="bn-ai" onclick="showPage('ai')"><span class="bnav-icon">🤖</span>Coach</button>
+</div>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -273,6 +289,7 @@ input,select,textarea{font-size:16px!important;}
 
 <!-- SETTINGS -->
 <div id="page-settings" class="page">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
   <div class="section-header"><div class="section-title">Settings</div></div>
   <div class="grid-2">
     <div class="card">
@@ -501,10 +518,13 @@ async function remove(table, id) {
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.bottom-nav-btn').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   const map = {home:0,goals:1,training:2,portfolio:3,health:4,ai:5,settings:6};
   const tabs = document.querySelectorAll('.nav-tab');
   if (map[id] !== undefined && tabs[map[id]]) tabs[map[id]].classList.add('active');
+  const bn = document.getElementById('bn-' + id);
+  if (bn) bn.classList.add('active');
   if (id==='home') renderHome();
   if (id==='goals') renderGoals();
   if (id==='training') { renderTraining(); renderBooks(); }
@@ -838,8 +858,16 @@ function scrollChat(){document.getElementById('chat-messages').scrollTop=documen
 function quickPrompt(msg){document.getElementById('chat-input').value=msg;sendChat();}
 
 // ── MODALS ────────────────────────────────────────────────
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
+function openModal(id){
+  const el = document.getElementById(id);
+  el.style.display = 'flex';
+  requestAnimationFrame(() => { el.classList.add('open'); });
+}
+function closeModal(id){
+  const el = document.getElementById(id);
+  el.classList.remove('open');
+}
+
 document.querySelectorAll('.modal-backdrop').forEach(el=>{el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});});
 
 // ── DATA BACKUP ───────────────────────────────────────────
