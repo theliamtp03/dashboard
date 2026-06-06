@@ -25,321 +25,134 @@
   --radius-sm: 8px;
   --font-head: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
-  --bg-image: none;
-  --bg-opacity: 0.15;
-  --bg-blur: 0px;
 }
-.theme-white {
-  --bg: #f5f4f0;
-  --surface: rgba(0,0,0,0.04);
-  --surface2: rgba(0,0,0,0.07);
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(0,0,0,0.14);
-  --text: #1a1a2e;
-  --text2: rgba(26,26,46,0.55);
-  --text3: rgba(26,26,46,0.3);
-  --accent: #5b4ee0;
-  --accent2: #7c6af7;
-  --green: #2a9d5c;
-  --red: #e53e3e;
-  --amber: #d97706;
-  --blue: #2b6cb0;
-}
-.theme-forest {
-  --bg: #0d1f1a;
-  --surface: rgba(255,255,255,0.04);
-  --surface2: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.13);
-  --text: #e8f5e0;
-  --text2: rgba(232,245,224,0.55);
-  --text3: rgba(232,245,224,0.3);
-  --accent: #4ade80;
-  --accent2: #86efac;
-  --green: #4ade80;
-  --red: #f87171;
-  --amber: #fbbf24;
-  --blue: #60a5fa;
-}
-.theme-midnight {
-  --bg: #000000;
-  --surface: rgba(255,255,255,0.03);
-  --surface2: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.06);
-  --border2: rgba(255,255,255,0.1);
-  --text: #ffffff;
-  --text2: rgba(255,255,255,0.5);
-  --text3: rgba(255,255,255,0.25);
-  --accent: #e879f9;
-  --accent2: #f0abfc;
-  --green: #34d399;
-  --red: #f87171;
-  --amber: #fbbf24;
-  --blue: #818cf8;
-}
-.theme-amber {
-  --bg: #1c1408;
-  --surface: rgba(255,255,255,0.04);
-  --surface2: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.13);
-  --text: #fef3c7;
-  --text2: rgba(254,243,199,0.55);
-  --text3: rgba(254,243,199,0.3);
-  --accent: #f59e0b;
-  --accent2: #fbbf24;
-  --green: #34d399;
-  --red: #f87171;
-  --amber: #fbbf24;
-  --blue: #60a5fa;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-size: 14px;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-}
-#bg-layer {
-  position: fixed; inset: 0; z-index: 0;
-  background-image: var(--bg-image);
-  background-size: cover; background-position: center;
-  opacity: var(--bg-opacity);
-  filter: blur(var(--bg-blur));
-  pointer-events: none;
-  transition: opacity 0.4s, filter 0.4s;
-}
-.app { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-
-/* NAV */
-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  margin-bottom: 2.5rem;
-}
-.nav-logo { font-family: var(--font-head); font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.5px; }
-.nav-logo span { color: var(--accent); }
-.nav-tabs { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 4px; }
-.nav-tab {
-  padding: 7px 16px; border-radius: 7px; font-size: 13px; font-weight: 500;
-  color: var(--text2); cursor: pointer; border: none; background: none;
-  font-family: var(--font-body); transition: all 0.2s;
-}
-.nav-tab:hover { color: var(--text); }
-.nav-tab.active { background: var(--accent); color: #fff; }
-.nav-right { display: flex; gap: 8px; align-items: center; }
-.icon-btn {
-  width: 36px; height: 36px; border-radius: var(--radius-sm);
-  background: var(--surface); border: 1px solid var(--border);
-  color: var(--text2); cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 16px;
-}
-.icon-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border2); }
-
-/* PAGES */
-.page { display: none; }
-.page.active { display: block; }
-
-/* GRID */
-.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-.span-2 { grid-column: span 2; }
-
-/* CARD */
-.card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1.25rem 1.375rem;
-  backdrop-filter: blur(12px);
-}
-.card-title {
-  font-family: var(--font-head); font-size: 13px; font-weight: 600;
-  color: var(--text2); text-transform: uppercase; letter-spacing: 0.06em;
-  margin-bottom: 1rem; display: flex; align-items: center; gap: 8px;
-}
-.card-title-icon { font-size: 14px; opacity: 0.7; }
-
-/* STAT PILLS */
-.stat-row { display: flex; gap: 12px; margin-bottom: 1.5rem; }
-.stat-pill {
-  flex: 1; background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 1rem 1.25rem; backdrop-filter: blur(12px);
-}
-.stat-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-.stat-val { font-family: var(--font-head); font-size: 26px; font-weight: 700; color: var(--text); line-height: 1; }
-.stat-sub { font-size: 12px; color: var(--text2); margin-top: 4px; }
-
-/* FORMS */
-input, select, textarea {
-  background: var(--surface2); border: 1px solid var(--border2);
-  color: var(--text); font-family: var(--font-body); font-size: 14px;
-  border-radius: var(--radius-sm); padding: 9px 12px; width: 100%;
-  outline: none; transition: border-color 0.2s;
-}
-input:focus, select:focus, textarea:focus { border-color: var(--accent); }
-input::placeholder, textarea::placeholder { color: var(--text3); }
-select option { background: #1a1a2e; color: var(--text); }
-label { font-size: 12px; color: var(--text2); display: block; margin-bottom: 5px; }
-.form-row { display: grid; gap: 10px; margin-bottom: 10px; }
-.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
-.form-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-
-/* BUTTONS */
-.btn {
-  padding: 9px 18px; border-radius: var(--radius-sm); font-size: 13px;
-  font-weight: 500; font-family: var(--font-body); cursor: pointer;
-  border: none; transition: all 0.2s;
-}
-.btn-primary { background: var(--accent); color: #fff; }
-.btn-primary:hover { opacity: 0.85; }
-.btn-ghost { background: var(--surface2); border: 1px solid var(--border2); color: var(--text2); }
-.btn-ghost:hover { color: var(--text); border-color: var(--accent); }
-.btn-danger { background: rgba(245,101,101,0.15); border: 1px solid rgba(245,101,101,0.3); color: var(--red); }
-.btn-danger:hover { background: rgba(245,101,101,0.25); }
-.btn-sm { padding: 5px 11px; font-size: 12px; }
-.btn-icon { padding: 7px 9px; }
-
-/* BADGES */
-.badge {
-  display: inline-block; padding: 3px 9px; border-radius: 99px;
-  font-size: 11px; font-weight: 500;
-}
-.badge-active { background: rgba(124,106,247,0.2); color: var(--accent2); border: 1px solid rgba(124,106,247,0.3); }
-.badge-done { background: rgba(61,214,140,0.15); color: var(--green); border: 1px solid rgba(61,214,140,0.25); }
-.badge-overdue { background: rgba(245,101,101,0.15); color: var(--red); border: 1px solid rgba(245,101,101,0.25); }
-.badge-cat { background: var(--surface2); color: var(--text2); border: 1px solid var(--border2); }
-
-/* PROGRESS BAR */
-.prog-wrap { height: 6px; background: var(--surface2); border-radius: 99px; overflow: hidden; margin: 6px 0; }
-.prog-fill { height: 100%; border-radius: 99px; background: var(--accent); transition: width 0.5s; }
-
-/* TABLE */
-.tbl { width: 100%; border-collapse: collapse; }
-.tbl th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); padding: 0 12px 10px; text-align: left; font-weight: 500; }
-.tbl td { padding: 11px 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text); vertical-align: middle; }
-.tbl tr:hover td { background: var(--surface2); }
-.up { color: var(--green); font-weight: 500; }
-.down { color: var(--red); font-weight: 500; }
-
-/* CHART */
-.chart-wrap { position: relative; }
-canvas { max-width: 100%; }
-
-/* GOAL ITEM */
-.goal-item {
-  padding: 14px 16px; border: 1px solid var(--border);
-  border-radius: var(--radius); background: var(--surface);
-  margin-bottom: 10px; transition: border-color 0.2s;
-}
-.goal-item:hover { border-color: var(--border2); }
-.goal-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
-.goal-title { font-family: var(--font-head); font-size: 15px; font-weight: 600; color: var(--text); }
-.goal-meta { font-size: 12px; color: var(--text3); margin-top: 3px; }
-.goal-actions { display: flex; gap: 6px; flex-shrink: 0; }
-.goal-done { opacity: 0.5; }
-.goal-done .goal-title { text-decoration: line-through; }
-
-/* BOOK */
-.book-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.book-item:last-child { border-bottom: none; }
-.book-icon { width: 36px; height: 48px; border-radius: 4px; background: var(--accent); opacity: 0.7; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
-.book-title { font-size: 14px; font-weight: 500; color: var(--text); }
-.book-author { font-size: 12px; color: var(--text3); margin-top: 2px; }
-.book-date { font-size: 12px; color: var(--text2); margin-left: auto; flex-shrink: 0; }
-
-/* DATE ITEM */
-.date-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
-.date-item:last-child { border-bottom: none; }
-.date-countdown { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--surface2); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
-.date-days { font-family: var(--font-head); font-size: 16px; font-weight: 700; line-height: 1; color: var(--accent); }
-.date-days-label { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
-.date-name { font-size: 14px; font-weight: 500; color: var(--text); }
-.date-when { font-size: 12px; color: var(--text3); margin-top: 2px; }
-
-/* AI CHAT */
-.chat-messages { height: 320px; overflow-y: auto; padding: 12px; margin-bottom: 12px; display: flex; flex-direction: column; gap: 12px; }
-.chat-msg { max-width: 85%; }
-.chat-msg.user { align-self: flex-end; }
-.chat-msg.ai { align-self: flex-start; }
-.chat-bubble {
-  padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.6;
-}
-.chat-msg.user .chat-bubble { background: var(--accent); color: #fff; border-radius: 12px 12px 2px 12px; }
-.chat-msg.ai .chat-bubble { background: var(--surface2); border: 1px solid var(--border2); color: var(--text); border-radius: 2px 12px 12px 12px; }
-.chat-input-row { display: flex; gap: 8px; }
-.chat-input-row input { flex: 1; }
-.chat-typing { display: none; align-self: flex-start; }
-.chat-typing .chat-bubble { display: flex; gap: 5px; align-items: center; padding: 12px 16px; }
-.dot-pulse { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); animation: pulse 1.2s infinite; }
-.dot-pulse:nth-child(2) { animation-delay: 0.2s; }
-.dot-pulse:nth-child(3) { animation-delay: 0.4s; }
-@keyframes pulse { 0%,80%,100%{opacity:0.2;transform:scale(0.8)} 40%{opacity:1;transform:scale(1)} }
-
-/* SETTINGS */
-.theme-swatches { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.swatch {
-  width: 52px; height: 52px; border-radius: 10px; cursor: pointer;
-  border: 2px solid transparent; transition: all 0.2s; position: relative;
-}
-.swatch.active { border-color: var(--accent); }
-.swatch-label { font-size: 11px; color: var(--text2); text-align: center; margin-top: 5px; }
-
-/* SECTION HEADER */
-.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
-.section-title { font-family: var(--font-head); font-size: 22px; font-weight: 700; color: var(--text); }
-
-/* MODAL */
-.modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(4px); }
-.modal-backdrop.open { display: flex; }
-.modal { background: var(--bg); border: 1px solid var(--border2); border-radius: var(--radius); padding: 1.75rem; width: 480px; max-width: 95vw; max-height: 90vh; overflow-y: auto; }
-.modal-title { font-family: var(--font-head); font-size: 18px; font-weight: 700; margin-bottom: 1.25rem; }
-.modal-footer { display: flex; justify-content: flex-end; gap: 8px; margin-top: 1.25rem; }
-
-/* UTILS */
-.flex { display: flex; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-.gap-8 { gap: 8px; }
-.gap-12 { gap: 12px; }
-.mt-8 { margin-top: 8px; }
-.mt-12 { margin-top: 12px; }
-.mt-16 { margin-top: 16px; }
-.text-green { color: var(--green); }
-.text-red { color: var(--red); }
-.text-amber { color: var(--amber); }
-.text-muted { color: var(--text2); }
-.text-sm { font-size: 12px; }
-.font-head { font-family: var(--font-head); }
-.divider { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
-.empty-state { text-align: center; padding: 3rem 1rem; color: var(--text3); font-size: 14px; }
-.empty-icon { font-size: 32px; margin-bottom: 10px; opacity: 0.4; }
-.scrollable { max-height: 400px; overflow-y: auto; }
-
-/* RUN BARS */
-.run-chart { display: flex; align-items: flex-end; gap: 6px; height: 80px; margin-top: 12px; }
-.run-bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
-.run-bar-outer { width: 100%; background: var(--surface2); border-radius: 4px 4px 0 0; position: relative; display: flex; align-items: flex-end; }
-.run-bar-inner { width: 100%; background: var(--accent); border-radius: 4px 4px 0 0; transition: height 0.5s; min-height: 2px; }
-.run-bar-label { font-size: 10px; color: var(--text3); }
-.run-bar-km { font-size: 10px; color: var(--text2); }
-
-/* WEIGHT CHART placeholder */
-.mini-chart { width: 100%; height: 100px; }
-
-@media(max-width:768px){
-  .grid-2,.grid-3{grid-template-columns:1fr;}
-  .stat-row{flex-wrap:wrap;}
-  .nav-tabs{display:none;}
-  .span-2{grid-column:span 1;}
-}
+.theme-white{--bg:#f5f4f0;--surface:rgba(0,0,0,0.04);--surface2:rgba(0,0,0,0.07);--border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.14);--text:#1a1a2e;--text2:rgba(26,26,46,0.55);--text3:rgba(26,26,46,0.3);--accent:#5b4ee0;--accent2:#7c6af7;--green:#2a9d5c;--red:#e53e3e;--amber:#d97706;--blue:#2b6cb0;}
+.theme-forest{--bg:#0d1f1a;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#e8f5e0;--text2:rgba(232,245,224,0.55);--text3:rgba(232,245,224,0.3);--accent:#4ade80;--accent2:#86efac;--green:#4ade80;--red:#f87171;--amber:#fbbf24;--blue:#60a5fa;}
+.theme-midnight{--bg:#000000;--surface:rgba(255,255,255,0.03);--surface2:rgba(255,255,255,0.06);--border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);--text:#ffffff;--text2:rgba(255,255,255,0.5);--text3:rgba(255,255,255,0.25);--accent:#e879f9;--accent2:#f0abfc;--green:#34d399;--red:#f87171;--amber:#fbbf24;--blue:#818cf8;}
+.theme-amber{--bg:#1c1408;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--text:#fef3c7;--text2:rgba(254,243,199,0.55);--text3:rgba(254,243,199,0.3);--accent:#f59e0b;--accent2:#fbbf24;--green:#34d399;--red:#f87171;--amber:#fbbf24;--blue:#60a5fa;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:14px;min-height:100vh;position:relative;overflow-x:hidden;}
+#bg-layer{position:fixed;inset:0;z-index:0;background-size:cover;background-position:center;pointer-events:none;transition:opacity 0.4s,filter 0.4s;}
+.app{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:2rem 1.5rem;}
+nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:2.5rem;}
+.nav-logo{font-family:var(--font-head);font-size:20px;font-weight:800;color:var(--text);letter-spacing:-0.5px;}
+.nav-logo span{color:var(--accent);}
+.sync-indicator{font-size:11px;padding:3px 10px;border-radius:99px;border:1px solid var(--border2);color:var(--text3);display:flex;align-items:center;gap:5px;}
+.sync-dot{width:6px;height:6px;border-radius:50%;background:var(--text3);}
+.sync-dot.synced{background:var(--green);}
+.sync-dot.syncing{background:var(--amber);animation:pulse 1s infinite;}
+.sync-dot.error{background:var(--red);}
+@keyframes pulse{0%,100%{opacity:0.4}50%{opacity:1}}
+.nav-tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px;}
+.nav-tab{padding:7px 16px;border-radius:7px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border:none;background:none;font-family:var(--font-body);transition:all 0.2s;}
+.nav-tab:hover{color:var(--text);}
+.nav-tab.active{background:var(--accent);color:#fff;}
+.nav-right{display:flex;gap:8px;align-items:center;}
+.icon-btn{width:36px;height:36px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);color:var(--text2);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;font-size:16px;}
+.icon-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--border2);}
+.page{display:none;}.page.active{display:block;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;}
+.span-2{grid-column:span 2;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.375rem;backdrop-filter:blur(12px);}
+.card-title{font-family:var(--font-head);font-size:13px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.stat-row{display:flex;gap:12px;margin-bottom:1.5rem;}
+.stat-pill{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;backdrop-filter:blur(12px);}
+.stat-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;}
+.stat-val{font-family:var(--font-head);font-size:26px;font-weight:700;color:var(--text);line-height:1;}
+.stat-sub{font-size:12px;color:var(--text2);margin-top:4px;}
+input,select,textarea{background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--font-body);font-size:14px;border-radius:var(--radius-sm);padding:9px 12px;width:100%;outline:none;transition:border-color 0.2s;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+input::placeholder,textarea::placeholder{color:var(--text3);}
+select option{background:#1a1a2e;color:var(--text);}
+label{font-size:12px;color:var(--text2);display:block;margin-bottom:5px;}
+.form-row{display:grid;gap:10px;margin-bottom:10px;}
+.form-row.cols-2{grid-template-columns:1fr 1fr;}
+.form-row.cols-3{grid-template-columns:1fr 1fr 1fr;}
+.btn{padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;font-family:var(--font-body);cursor:pointer;border:none;transition:all 0.2s;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-primary:hover{opacity:0.85;}
+.btn-ghost{background:var(--surface2);border:1px solid var(--border2);color:var(--text2);}
+.btn-ghost:hover{color:var(--text);border-color:var(--accent);}
+.btn-danger{background:rgba(245,101,101,0.15);border:1px solid rgba(245,101,101,0.3);color:var(--red);}
+.btn-danger:hover{background:rgba(245,101,101,0.25);}
+.btn-sm{padding:5px 11px;font-size:12px;}
+.btn-icon{padding:7px 9px;}
+.badge{display:inline-block;padding:3px 9px;border-radius:99px;font-size:11px;font-weight:500;}
+.badge-active{background:rgba(124,106,247,0.2);color:var(--accent2);border:1px solid rgba(124,106,247,0.3);}
+.badge-done{background:rgba(61,214,140,0.15);color:var(--green);border:1px solid rgba(61,214,140,0.25);}
+.badge-overdue{background:rgba(245,101,101,0.15);color:var(--red);border:1px solid rgba(245,101,101,0.25);}
+.badge-cat{background:var(--surface2);color:var(--text2);border:1px solid var(--border2);}
+.prog-wrap{height:6px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:6px 0;}
+.prog-fill{height:100%;border-radius:99px;background:var(--accent);transition:width 0.5s;}
+.tbl{width:100%;border-collapse:collapse;}
+.tbl th{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);padding:0 12px 10px;text-align:left;font-weight:500;}
+.tbl td{padding:11px 12px;border-top:1px solid var(--border);font-size:13px;color:var(--text);vertical-align:middle;}
+.tbl tr:hover td{background:var(--surface2);}
+.up{color:var(--green);font-weight:500;}
+.down{color:var(--red);font-weight:500;}
+.goal-item{padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);margin-bottom:10px;transition:border-color 0.2s;}
+.goal-item:hover{border-color:var(--border2);}
+.goal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px;}
+.goal-title{font-family:var(--font-head);font-size:15px;font-weight:600;color:var(--text);}
+.goal-meta{font-size:12px;color:var(--text3);margin-top:3px;}
+.goal-actions{display:flex;gap:6px;flex-shrink:0;}
+.goal-done{opacity:0.5;}
+.goal-done .goal-title{text-decoration:line-through;}
+.book-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.book-item:last-child{border-bottom:none;}
+.book-icon{width:36px;height:48px;border-radius:4px;background:var(--accent);opacity:0.7;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.date-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+.date-item:last-child{border-bottom:none;}
+.date-countdown{width:44px;height:44px;border-radius:var(--radius-sm);background:var(--surface2);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;}
+.date-days{font-family:var(--font-head);font-size:16px;font-weight:700;line-height:1;color:var(--accent);}
+.date-days-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.05em;}
+.chat-messages{height:320px;overflow-y:auto;padding:12px;margin-bottom:12px;display:flex;flex-direction:column;gap:12px;}
+.chat-msg{max-width:85%;}
+.chat-msg.user{align-self:flex-end;}
+.chat-msg.ai{align-self:flex-start;}
+.chat-bubble{padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.6;}
+.chat-msg.user .chat-bubble{background:var(--accent);color:#fff;border-radius:12px 12px 2px 12px;}
+.chat-msg.ai .chat-bubble{background:var(--surface2);border:1px solid var(--border2);color:var(--text);border-radius:2px 12px 12px 12px;}
+.chat-typing{display:none;align-self:flex-start;}
+.chat-typing .chat-bubble{display:flex;gap:5px;align-items:center;padding:12px 16px;}
+.dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--text3);animation:dp 1.2s infinite;}
+.dot-pulse:nth-child(2){animation-delay:0.2s;}
+.dot-pulse:nth-child(3){animation-delay:0.4s;}
+@keyframes dp{0%,80%,100%{opacity:0.2;transform:scale(0.8)}40%{opacity:1;transform:scale(1)}}
+.swatch{width:52px;height:52px;border-radius:10px;cursor:pointer;border:2px solid transparent;transition:all 0.2s;}
+.swatch.active{border-color:var(--accent);}
+.swatch-label{font-size:11px;color:var(--text2);text-align:center;margin-top:5px;}
+.section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
+.section-title{font-family:var(--font-head);font-size:22px;font-weight:700;color:var(--text);}
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
+.modal-backdrop.open{display:flex;}
+.modal{background:var(--bg);border:1px solid var(--border2);border-radius:var(--radius);padding:1.75rem;width:480px;max-width:95vw;max-height:90vh;overflow-y:auto;}
+.modal-title{font-family:var(--font-head);font-size:18px;font-weight:700;margin-bottom:1.25rem;}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:1.25rem;}
+.run-chart{display:flex;align-items:flex-end;gap:6px;height:80px;margin-top:12px;}
+.run-bar-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;}
+.run-bar-outer{width:100%;background:var(--surface2);border-radius:4px 4px 0 0;display:flex;align-items:flex-end;}
+.run-bar-inner{width:100%;background:var(--accent);border-radius:4px 4px 0 0;transition:height 0.5s;min-height:2px;}
+.run-bar-label{font-size:10px;color:var(--text3);}
+.run-bar-km{font-size:10px;color:var(--text2);}
+.mini-chart{width:100%;height:100px;}
+.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0;}
+.empty-state{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:14px;}
+.empty-icon{font-size:32px;margin-bottom:10px;opacity:0.4;}
+.scrollable{max-height:400px;overflow-y:auto;}
+.mt-8{margin-top:8px;}.mt-12{margin-top:12px;}.mt-16{margin-top:16px;}
+.text-green{color:var(--green);}.text-red{color:var(--red);}.text-amber{color:var(--amber);}
+.text-muted{color:var(--text2);}.text-sm{font-size:12px;}
+.flex{display:flex;}.items-center{align-items:center;}.justify-between{justify-content:space-between;}
+.gap-8{gap:8px;}.gap-12{gap:12px;}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr;}.stat-row{flex-wrap:wrap;}.nav-tabs{display:none;}.span-2{grid-column:span 1;}}
 </style>
 </head>
 <body>
 <div id="bg-layer"></div>
 <div class="app">
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">Liam<span>.</span></div>
   <div class="nav-tabs">
@@ -351,185 +164,91 @@ canvas { max-width: 100%; }
     <button class="nav-tab" onclick="showPage('ai')">AI Coach</button>
   </div>
   <div class="nav-right">
+    <div class="sync-indicator"><div class="sync-dot" id="sync-dot"></div><span id="sync-label">not connected</span></div>
     <button class="icon-btn" onclick="showPage('settings')" title="Settings">⚙️</button>
   </div>
 </nav>
 
-<!-- =================== HOME =================== -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="section-header">
-    <div>
-      <div class="section-title" id="greeting">Good morning, Liam</div>
-      <div class="text-muted text-sm mt-8" id="home-date"></div>
-    </div>
+    <div><div class="section-title" id="greeting">Good morning, Liam</div><div class="text-muted text-sm mt-8" id="home-date"></div></div>
     <div id="home-alerts" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
   </div>
-
   <div class="stat-row">
-    <div class="stat-pill">
-      <div class="stat-label">Active Goals</div>
-      <div class="stat-val" id="s-active-goals">0</div>
-      <div class="stat-sub" id="s-goals-done">0 completed</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Books This Year</div>
-      <div class="stat-val" id="s-books">0</div>
-      <div class="stat-sub">books read</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Weekly Mileage</div>
-      <div class="stat-val" id="s-km">0</div>
-      <div class="stat-sub">km this week</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Portfolio</div>
-      <div class="stat-val" id="s-port-val">—</div>
-      <div class="stat-sub" id="s-port-change">add holdings to track</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Weight</div>
-      <div class="stat-val" id="s-weight">—</div>
-      <div class="stat-sub">kg</div>
-    </div>
+    <div class="stat-pill"><div class="stat-label">Active Goals</div><div class="stat-val" id="s-active-goals">0</div><div class="stat-sub" id="s-goals-done">0 completed</div></div>
+    <div class="stat-pill"><div class="stat-label">Books This Year</div><div class="stat-val" id="s-books">0</div><div class="stat-sub">books read</div></div>
+    <div class="stat-pill"><div class="stat-label">Weekly Mileage</div><div class="stat-val" id="s-km">0</div><div class="stat-sub">km this week</div></div>
+    <div class="stat-pill"><div class="stat-label">Portfolio</div><div class="stat-val" id="s-port-val">—</div><div class="stat-sub" id="s-port-change">add holdings to track</div></div>
+    <div class="stat-pill"><div class="stat-label">Weight</div><div class="stat-val" id="s-weight">—</div><div class="stat-sub">kg</div></div>
   </div>
-
   <div class="grid-2">
-    <div class="card">
-      <div class="card-title"><span class="card-title-icon">🎯</span> Goals focus</div>
-      <div id="home-goals-list"><div class="empty-state"><div class="empty-icon">🎯</div>No active goals yet</div></div>
-    </div>
-    <div class="card">
-      <div class="card-title"><span class="card-title-icon">📅</span> Upcoming dates</div>
-      <div id="home-dates-list"><div class="empty-state"><div class="empty-icon">📅</div>No upcoming dates</div></div>
-    </div>
-    <div class="card span-2">
-      <div class="card-title"><span class="card-title-icon">🏃</span> Recent training weeks</div>
-      <div class="run-chart" id="home-run-chart"></div>
-    </div>
+    <div class="card"><div class="card-title">🎯 Goals focus</div><div id="home-goals-list"><div class="empty-state"><div class="empty-icon">🎯</div>No active goals yet</div></div></div>
+    <div class="card"><div class="card-title">📅 Upcoming dates</div><div id="home-dates-list"><div class="empty-state"><div class="empty-icon">📅</div>No upcoming dates</div></div></div>
+    <div class="card span-2"><div class="card-title">🏃 Recent training weeks</div><div class="run-chart" id="home-run-chart"></div></div>
   </div>
 </div>
 
-<!-- =================== GOALS =================== -->
+<!-- GOALS -->
 <div id="page-goals" class="page">
-  <div class="section-header">
-    <div class="section-title">Goals</div>
-    <button class="btn btn-primary" onclick="openGoalModal()">+ Add goal</button>
-  </div>
-
+  <div class="section-header"><div class="section-title">Goals</div><button class="btn btn-primary" onclick="openGoalModal()">+ Add goal</button></div>
   <div style="display:flex;gap:10px;margin-bottom:1.25rem;flex-wrap:wrap;">
     <button class="btn btn-ghost btn-sm" onclick="filterGoals('all')" id="gf-all">All</button>
     <button class="btn btn-ghost btn-sm" onclick="filterGoals('active')" id="gf-active">Active</button>
     <button class="btn btn-ghost btn-sm" onclick="filterGoals('done')" id="gf-done">Completed</button>
     <select id="goal-cat-filter" onchange="filterGoals()" style="width:auto;padding:5px 10px;font-size:12px;">
       <option value="">All categories</option>
-      <option>Career</option><option>Fitness</option><option>Learning</option>
-      <option>Finance</option><option>Personal</option><option>Business</option><option>Other</option>
+      <option>Career</option><option>Fitness</option><option>Learning</option><option>Finance</option><option>Personal</option><option>Business</option><option>Other</option>
     </select>
   </div>
-
   <div id="goals-list"></div>
-
-  <div style="margin-top:2rem;">
-    <div class="card-title">🏆 Achieved Goals</div>
-    <div id="achieved-list"></div>
-  </div>
+  <div style="margin-top:2rem;"><div class="card-title">🏆 Achieved Goals</div><div id="achieved-list"></div></div>
 </div>
 
-<!-- =================== TRAINING =================== -->
+<!-- TRAINING -->
 <div id="page-training" class="page">
-  <div class="section-header">
-    <div class="section-title">Training</div>
-    <button class="btn btn-primary" onclick="openRunModal()">+ Log week</button>
-  </div>
+  <div class="section-header"><div class="section-title">Training</div><button class="btn btn-primary" onclick="openRunModal()">+ Log week</button></div>
   <div class="grid-2">
-    <div class="card">
-      <div class="card-title">📊 Weekly mileage (last 12 weeks)</div>
-      <canvas id="run-canvas" class="mini-chart" height="160"></canvas>
-    </div>
-    <div class="card">
-      <div class="card-title">📖 Books read</div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
-        <button class="btn btn-ghost btn-sm" onclick="openBookModal()">+ Add book</button>
-      </div>
-      <div id="books-list" class="scrollable"></div>
-    </div>
+    <div class="card"><div class="card-title">📊 Weekly mileage (last 12 weeks)</div><canvas id="run-canvas" class="mini-chart" height="160"></canvas></div>
+    <div class="card"><div class="card-title">📖 Books read</div><div style="display:flex;justify-content:flex-end;margin-bottom:12px;"><button class="btn btn-ghost btn-sm" onclick="openBookModal()">+ Add book</button></div><div id="books-list" class="scrollable"></div></div>
   </div>
-  <div class="card mt-12">
-    <div class="card-title">📋 All run logs</div>
-    <div id="run-log-table" class="scrollable"></div>
-  </div>
+  <div class="card mt-12"><div class="card-title">📋 All run logs</div><div id="run-log-table" class="scrollable"></div></div>
 </div>
 
-<!-- =================== PORTFOLIO =================== -->
+<!-- PORTFOLIO -->
 <div id="page-portfolio" class="page">
-  <div class="section-header">
-    <div class="section-title">Portfolio</div>
-    <button class="btn btn-primary" onclick="openHoldingModal()">+ Add holding</button>
-  </div>
+  <div class="section-header"><div class="section-title">Portfolio</div><button class="btn btn-primary" onclick="openHoldingModal()">+ Add holding</button></div>
   <div class="stat-row">
-    <div class="stat-pill">
-      <div class="stat-label">Total Value</div>
-      <div class="stat-val" id="port-total">—</div>
-      <div class="stat-sub">live prices</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Total Cost</div>
-      <div class="stat-val" id="port-cost">—</div>
-      <div class="stat-sub">invested</div>
-    </div>
-    <div class="stat-pill">
-      <div class="stat-label">Unrealised P&L</div>
-      <div class="stat-val" id="port-pnl">—</div>
-      <div class="stat-sub" id="port-pnl-pct">—</div>
-    </div>
+    <div class="stat-pill"><div class="stat-label">Total Value</div><div class="stat-val" id="port-total">—</div><div class="stat-sub">live prices</div></div>
+    <div class="stat-pill"><div class="stat-label">Total Cost</div><div class="stat-val" id="port-cost">—</div><div class="stat-sub">invested</div></div>
+    <div class="stat-pill"><div class="stat-label">Unrealised P&L</div><div class="stat-val" id="port-pnl">—</div><div class="stat-sub" id="port-pnl-pct">—</div></div>
   </div>
   <div class="card">
     <div class="card-title">Holdings</div>
-    <div id="port-note" style="font-size:12px;color:var(--text3);margin-bottom:12px;">
-      Live prices fetched from Yahoo Finance (may have ~15min delay). Currency shown as entered.
-    </div>
+    <div style="font-size:12px;color:var(--text3);margin-bottom:12px;">Live prices from Yahoo Finance (~15min delay). Edit holdings anytime.</div>
     <div id="holdings-table"></div>
   </div>
 </div>
 
-<!-- =================== HEALTH =================== -->
+<!-- HEALTH -->
 <div id="page-health" class="page">
-  <div class="section-header">
-    <div class="section-title">Health & Dates</div>
-    <button class="btn btn-primary" onclick="openWeightModal()">+ Log weight</button>
-  </div>
+  <div class="section-header"><div class="section-title">Health & Dates</div><button class="btn btn-primary" onclick="openWeightModal()">+ Log weight</button></div>
   <div class="grid-2">
-    <div class="card">
-      <div class="card-title">⚖️ Weight (kg)</div>
-      <canvas id="weight-canvas" class="mini-chart" height="160"></canvas>
-      <div id="weight-stats" class="mt-12"></div>
-    </div>
-    <div class="card">
-      <div class="card-title">📅 Key dates & birthdays</div>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
-        <button class="btn btn-ghost btn-sm" onclick="openDateModal()">+ Add date</button>
-      </div>
-      <div id="dates-list" class="scrollable"></div>
-    </div>
+    <div class="card"><div class="card-title">⚖️ Weight (kg)</div><canvas id="weight-canvas" class="mini-chart" height="160"></canvas><div id="weight-stats" class="mt-12"></div></div>
+    <div class="card"><div class="card-title">📅 Key dates & birthdays</div><div style="display:flex;justify-content:flex-end;margin-bottom:12px;"><button class="btn btn-ghost btn-sm" onclick="openDateModal()">+ Add date</button></div><div id="dates-list" class="scrollable"></div></div>
   </div>
 </div>
 
-<!-- =================== AI COACH =================== -->
+<!-- AI COACH -->
 <div id="page-ai" class="page">
-  <div class="section-header">
-    <div class="section-title">AI Coach</div>
-  </div>
+  <div class="section-header"><div class="section-title">AI Coach</div></div>
   <div class="card" style="max-width:700px;">
     <div class="card-title">💬 Your personal coach</div>
     <div class="chat-messages" id="chat-messages">
-      <div class="chat-msg ai">
-        <div class="chat-bubble">Hey Liam 👋 I'm your personal coach. I can see all your goals, training, portfolio and upcoming dates. Ask me anything — or just say "check in" and I'll give you a full rundown of where you're at.</div>
-      </div>
+      <div class="chat-msg ai"><div class="chat-bubble">Hey Liam 👋 I'm your personal coach. I can see all your goals, training, portfolio and upcoming dates. Ask me anything — or say "check in" for a full rundown.</div></div>
     </div>
-    <div class="chat-typing" id="chat-typing">
-      <div class="chat-bubble"><div class="dot-pulse"></div><div class="dot-pulse"></div><div class="dot-pulse"></div></div>
-    </div>
-    <div class="chat-input-row">
+    <div class="chat-typing" id="chat-typing"><div class="chat-bubble"><div class="dot-pulse"></div><div class="dot-pulse"></div><div class="dot-pulse"></div></div></div>
+    <div style="display:flex;gap:8px;">
       <input type="text" id="chat-input" placeholder="Ask your coach…" onkeydown="if(event.key==='Enter')sendChat()">
       <button class="btn btn-primary" onclick="sendChat()">Send</button>
     </div>
@@ -547,116 +266,69 @@ canvas { max-width: 100%; }
   </div>
 </div>
 
-<!-- =================== SETTINGS =================== -->
+<!-- SETTINGS -->
 <div id="page-settings" class="page">
-  <div class="section-header">
-    <div class="section-title">Settings</div>
-  </div>
+  <div class="section-header"><div class="section-title">Settings</div></div>
   <div class="grid-2">
     <div class="card">
       <div class="card-title">🎨 Colour theme</div>
-      <div class="theme-swatches">
-        <div>
-          <div class="swatch active" id="sw-dark" style="background:linear-gradient(135deg,#0a0a0f 50%,#7c6af7 100%)" onclick="setTheme('dark')" title="Dark"></div>
-          <div class="swatch-label">Dark</div>
-        </div>
-        <div>
-          <div class="swatch" id="sw-white" style="background:linear-gradient(135deg,#f5f4f0 50%,#5b4ee0 100%)" onclick="setTheme('white')" title="Light"></div>
-          <div class="swatch-label">Light</div>
-        </div>
-        <div>
-          <div class="swatch" id="sw-forest" style="background:linear-gradient(135deg,#0d1f1a 50%,#4ade80 100%)" onclick="setTheme('forest')" title="Forest"></div>
-          <div class="swatch-label">Forest</div>
-        </div>
-        <div>
-          <div class="swatch" id="sw-midnight" style="background:linear-gradient(135deg,#000 50%,#e879f9 100%)" onclick="setTheme('midnight')" title="Midnight"></div>
-          <div class="swatch-label">Midnight</div>
-        </div>
-        <div>
-          <div class="swatch" id="sw-amber" style="background:linear-gradient(135deg,#1c1408 50%,#f59e0b 100%)" onclick="setTheme('amber')" title="Amber"></div>
-          <div class="swatch-label">Amber</div>
-        </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <div><div class="swatch active" id="sw-dark" style="background:linear-gradient(135deg,#0a0a0f 50%,#7c6af7 100%)" onclick="setTheme('dark')"></div><div class="swatch-label">Dark</div></div>
+        <div><div class="swatch" id="sw-white" style="background:linear-gradient(135deg,#f5f4f0 50%,#5b4ee0 100%)" onclick="setTheme('white')"></div><div class="swatch-label">Light</div></div>
+        <div><div class="swatch" id="sw-forest" style="background:linear-gradient(135deg,#0d1f1a 50%,#4ade80 100%)" onclick="setTheme('forest')"></div><div class="swatch-label">Forest</div></div>
+        <div><div class="swatch" id="sw-midnight" style="background:linear-gradient(135deg,#000 50%,#e879f9 100%)" onclick="setTheme('midnight')"></div><div class="swatch-label">Midnight</div></div>
+        <div><div class="swatch" id="sw-amber" style="background:linear-gradient(135deg,#1c1408 50%,#f59e0b 100%)" onclick="setTheme('amber')"></div><div class="swatch-label">Amber</div></div>
       </div>
     </div>
-
     <div class="card">
       <div class="card-title">🖼️ Background image</div>
-      <div class="form-row">
-        <div>
-          <label>Upload an image</label>
-          <input type="file" id="bg-upload" accept="image/*" onchange="handleBgUpload(event)" style="cursor:pointer;">
-        </div>
-      </div>
+      <div class="form-row"><div><label>Upload an image</label><input type="file" id="bg-upload" accept="image/*" onchange="handleBgUpload(event)" style="cursor:pointer;"></div></div>
       <div class="form-row cols-2" style="margin-top:12px;">
-        <div>
-          <label>Opacity: <span id="opacity-val">15%</span></label>
-          <input type="range" id="bg-opacity-range" min="0" max="60" value="15" oninput="setBgOpacity(this.value)" style="background:none;border:none;padding:4px 0;">
-        </div>
-        <div>
-          <label>Blur: <span id="blur-val">0px</span></label>
-          <input type="range" id="bg-blur-range" min="0" max="20" value="0" oninput="setBgBlur(this.value)" style="background:none;border:none;padding:4px 0;">
-        </div>
+        <div><label>Opacity: <span id="opacity-val">15%</span></label><input type="range" id="bg-opacity-range" min="0" max="60" value="15" oninput="setBgOpacity(this.value)" style="background:none;border:none;padding:4px 0;"></div>
+        <div><label>Blur: <span id="blur-val">0px</span></label><input type="range" id="bg-blur-range" min="0" max="20" value="0" oninput="setBgBlur(this.value)" style="background:none;border:none;padding:4px 0;"></div>
       </div>
       <button class="btn btn-danger btn-sm mt-8" onclick="removeBg()">Remove background</button>
     </div>
-
     <div class="card">
-      <div class="card-title">💾 Data</div>
-      <p class="text-muted text-sm" style="margin-bottom:12px;">All data is stored in your browser's local storage. Export a backup anytime.</p>
+      <div class="card-title">🤖 AI Coach API key</div>
+      <p class="text-muted text-sm" style="margin-bottom:12px;">Stored only in your browser. Get a key at <a href="https://console.anthropic.com" style="color:var(--accent);">console.anthropic.com</a></p>
+      <div class="form-row"><div><label>Anthropic API Key</label><input type="password" id="api-key-input" placeholder="sk-ant-..." oninput="saveApiKey(this.value)"></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">☁️ Sync status</div>
+      <div id="sync-status-detail" class="text-muted text-sm" style="margin-bottom:12px;">Checking connection…</div>
+      <button class="btn btn-ghost btn-sm" onclick="syncAll()">🔄 Force sync now</button>
+      <hr class="divider">
+      <div class="card-title" style="margin-top:0;">💾 Backup</div>
       <div style="display:flex;gap:8px;">
         <button class="btn btn-ghost btn-sm" onclick="exportData()">📤 Export JSON</button>
         <button class="btn btn-ghost btn-sm" onclick="document.getElementById('import-file').click()">📥 Import JSON</button>
         <input type="file" id="import-file" accept=".json" style="display:none" onchange="importData(event)">
       </div>
-      <hr class="divider">
-      <button class="btn btn-danger btn-sm" onclick="if(confirm('Clear ALL data? This cannot be undone.'))clearData()">🗑 Clear all data</button>
-    </div>
-
-    <div class="card">
-      <div class="card-title">🤖 AI Coach API</div>
-      <p class="text-muted text-sm" style="margin-bottom:12px;">The AI coach uses the Anthropic API. Your key is stored locally and never sent anywhere except Anthropic.</p>
-      <div class="form-row">
-        <div>
-          <label>Anthropic API Key</label>
-          <input type="password" id="api-key-input" placeholder="sk-ant-..." oninput="saveApiKey(this.value)">
-        </div>
-      </div>
-      <p class="text-sm text-muted mt-8">Get a key at <a href="https://console.anthropic.com" style="color:var(--accent);">console.anthropic.com</a></p>
     </div>
   </div>
 </div>
 
-</div><!-- end .app -->
+</div>
 
-<!-- =================== MODALS =================== -->
-
-<!-- GOAL MODAL -->
+<!-- MODALS -->
 <div class="modal-backdrop" id="goal-modal">
   <div class="modal">
     <div class="modal-title" id="goal-modal-title">Add Goal</div>
     <div class="form-row"><div><label>Goal title</label><input type="text" id="g-title" placeholder="e.g. Run a 50k ultra"></div></div>
     <div class="form-row cols-2">
-      <div><label>Category</label>
-        <select id="g-cat">
-          <option>Career</option><option>Fitness</option><option>Learning</option>
-          <option>Finance</option><option>Personal</option><option>Business</option><option>Other</option>
-        </select>
-      </div>
+      <div><label>Category</label><select id="g-cat"><option>Career</option><option>Fitness</option><option>Learning</option><option>Finance</option><option>Personal</option><option>Business</option><option>Other</option></select></div>
       <div><label>Deadline (optional)</label><input type="date" id="g-deadline"></div>
     </div>
-    <div class="form-row"><div><label>Notes / description</label><textarea id="g-notes" rows="2" placeholder="Details, motivation, milestones…"></textarea></div></div>
+    <div class="form-row"><div><label>Notes</label><textarea id="g-notes" rows="2" placeholder="Details, motivation…"></textarea></div></div>
     <div class="form-row cols-2">
       <div><label>Progress (0–100%)</label><input type="number" id="g-progress" min="0" max="100" value="0"></div>
       <div><label>Weekly update note</label><input type="text" id="g-update" placeholder="What happened this week?"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('goal-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveGoal()">Save goal</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('goal-modal')">Cancel</button><button class="btn btn-primary" onclick="saveGoal()">Save goal</button></div>
   </div>
 </div>
 
-<!-- UPDATE GOAL MODAL -->
 <div class="modal-backdrop" id="update-goal-modal">
   <div class="modal">
     <div class="modal-title">Update Goal Progress</div>
@@ -664,19 +336,13 @@ canvas { max-width: 100%; }
     <div id="ug-title-display" style="font-family:var(--font-head);font-size:16px;margin-bottom:16px;color:var(--accent);"></div>
     <div class="form-row cols-2">
       <div><label>Progress (0–100%)</label><input type="number" id="ug-progress" min="0" max="100"></div>
-      <div><label>Mark complete?</label>
-        <select id="ug-done"><option value="0">Still in progress</option><option value="1">Mark as achieved! 🏆</option></select>
-      </div>
+      <div><label>Mark complete?</label><select id="ug-done"><option value="0">Still in progress</option><option value="1">Mark as achieved! 🏆</option></select></div>
     </div>
     <div class="form-row"><div><label>Weekly note</label><textarea id="ug-note" rows="2" placeholder="How did it go this week?"></textarea></div></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('update-goal-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="updateGoalProgress()">Update</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('update-goal-modal')">Cancel</button><button class="btn btn-primary" onclick="updateGoalProgress()">Update</button></div>
   </div>
 </div>
 
-<!-- RUN MODAL -->
 <div class="modal-backdrop" id="run-modal">
   <div class="modal">
     <div class="modal-title">Log Training Week</div>
@@ -685,14 +351,10 @@ canvas { max-width: 100%; }
       <div><label>Total km</label><input type="number" id="r-km" step="0.1" placeholder="e.g. 65"></div>
     </div>
     <div class="form-row"><div><label>Notes</label><input type="text" id="r-notes" placeholder="e.g. Long run 28km, intervals x2"></div></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('run-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveRun()">Save</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('run-modal')">Cancel</button><button class="btn btn-primary" onclick="saveRun()">Save</button></div>
   </div>
 </div>
 
-<!-- BOOK MODAL -->
 <div class="modal-backdrop" id="book-modal">
   <div class="modal">
     <div class="modal-title">Add Book</div>
@@ -701,15 +363,11 @@ canvas { max-width: 100%; }
       <div><label>Author</label><input type="text" id="b-author" placeholder="e.g. Benjamin Graham"></div>
       <div><label>Date finished</label><input type="date" id="b-date"></div>
     </div>
-    <div class="form-row"><div><label>Notes / takeaways (optional)</label><textarea id="b-notes" rows="2"></textarea></div></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('book-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveBook()">Save</button>
-    </div>
+    <div class="form-row"><div><label>Notes / takeaways</label><textarea id="b-notes" rows="2"></textarea></div></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('book-modal')">Cancel</button><button class="btn btn-primary" onclick="saveBook()">Save</button></div>
   </div>
 </div>
 
-<!-- WEIGHT MODAL -->
 <div class="modal-backdrop" id="weight-modal">
   <div class="modal">
     <div class="modal-title">Log Weight</div>
@@ -717,109 +375,140 @@ canvas { max-width: 100%; }
       <div><label>Date</label><input type="date" id="w-date"></div>
       <div><label>Weight (kg)</label><input type="number" id="w-kg" step="0.1" placeholder="e.g. 77.5"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('weight-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveWeight()">Save</button>
-    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('weight-modal')">Cancel</button><button class="btn btn-primary" onclick="saveWeight()">Save</button></div>
   </div>
 </div>
 
-<!-- DATE MODAL -->
 <div class="modal-backdrop" id="date-modal">
   <div class="modal">
     <div class="modal-title">Add Key Date</div>
     <div class="form-row"><div><label>Name</label><input type="text" id="d-name" placeholder="e.g. Mum's birthday"></div></div>
     <div class="form-row cols-2">
       <div><label>Date</label><input type="date" id="d-date"></div>
-      <div><label>Type</label>
-        <select id="d-type">
-          <option>Birthday</option><option>Anniversary</option><option>Deadline</option>
-          <option>Event</option><option>Race</option><option>Flight</option><option>Other</option>
-        </select>
-      </div>
+      <div><label>Type</label><select id="d-type"><option>Birthday</option><option>Anniversary</option><option>Deadline</option><option>Event</option><option>Race</option><option>Flight</option><option>Other</option></select></div>
     </div>
-    <div><label style="display:flex;align-items:center;gap:8px;cursor:pointer;">
-      <input type="checkbox" id="d-recurring" style="width:auto;"> Recurring annually
-    </label></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('date-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveDate()">Save</button>
-    </div>
+    <div><label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="d-recurring" style="width:auto;"> Recurring annually</label></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('date-modal')">Cancel</button><button class="btn btn-primary" onclick="saveDate()">Save</button></div>
   </div>
 </div>
 
-<!-- HOLDING MODAL -->
 <div class="modal-backdrop" id="holding-modal">
   <div class="modal">
     <div class="modal-title" id="hold-modal-title">Add Holding</div>
     <input type="hidden" id="hold-id">
     <div class="form-row cols-2">
-      <div><label>Ticker (e.g. AAPL)</label><input type="text" id="hold-ticker" placeholder="AAPL" style="text-transform:uppercase"></div>
+      <div><label>Ticker (e.g. AAPL)</label><input type="text" id="hold-ticker" placeholder="AAPL"></div>
       <div><label>Company name</label><input type="text" id="hold-name" placeholder="Apple Inc."></div>
     </div>
     <div class="form-row cols-2">
       <div><label>Shares held</label><input type="number" id="hold-shares" step="any" placeholder="10"></div>
-      <div><label>Avg buy price (£/$/€)</label><input type="number" id="hold-cost" step="any" placeholder="150.00"></div>
+      <div><label>Avg buy price</label><input type="number" id="hold-cost" step="any" placeholder="150.00"></div>
     </div>
-    <div class="form-row"><div><label>Currency</label>
-      <select id="hold-currency"><option>USD</option><option>GBP</option><option>EUR</option><option>HKD</option><option>SGD</option></select>
-    </div></div>
-    <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeModal('holding-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveHolding()">Save holding</button>
-    </div>
+    <div class="form-row"><div><label>Currency</label><select id="hold-currency"><option>USD</option><option>GBP</option><option>EUR</option><option>HKD</option><option>SGD</option></select></div></div>
+    <div class="modal-footer"><button class="btn btn-ghost" onclick="closeModal('holding-modal')">Cancel</button><button class="btn btn-primary" onclick="saveHolding()">Save holding</button></div>
   </div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <script>
-// ===================== STORAGE =====================
-const S = {
-  get: k => { try { return JSON.parse(localStorage.getItem(k)) } catch(e) { return null } },
-  set: (k,v) => localStorage.setItem(k, JSON.stringify(v)),
-  del: k => localStorage.removeItem(k)
-};
+// ── CONFIG ──────────────────────────────────────────────
+const SUPA_URL = 'https://gtjfyombyqxbkrfgjotd.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd0amZ5b21ieXF4YmtyZmdqb3RkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3NjE1NjUsImV4cCI6MjA5NjMzNzU2NX0.Zem22v6mF6_r69lL2hfhrlf-vK-Uaq_C5SDrE3rQnKY';
+const HEADERS = { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': 'Bearer ' + SUPA_KEY, 'Prefer': 'resolution=merge-duplicates' };
 
-// ===================== STATE =====================
-let goals = S.get('goals') || [];
-let runs = S.get('runs') || [];
-let books = S.get('books') || [];
-let weights = S.get('weights') || [];
-let dates = S.get('dates') || [];
-let holdings = S.get('holdings') || [];
-let prices = {};
-let currentTheme = S.get('theme') || 'dark';
-let editGoalId = null;
-let editHoldId = null;
-let runChart = null;
-let weightChart = null;
+// ── STATE ────────────────────────────────────────────────
+let goals = [], runs = [], books = [], weights = [], dates = [], holdings = [];
+let prices = {}, runChart = null, weightChart = null;
+let editGoalId = null, editHoldId = null, goalFilter = 'all', goalCatFilter = '';
+let chatHistory = [];
+let syncOk = false;
 
-function save() {
-  S.set('goals', goals);
-  S.set('runs', runs);
-  S.set('books', books);
-  S.set('weights', weights);
-  S.set('dates', dates);
-  S.set('holdings', holdings);
+// ── SUPABASE ─────────────────────────────────────────────
+function setSyncStatus(state, msg) {
+  syncOk = state === 'synced';
+  const dot = document.getElementById('sync-dot');
+  const lbl = document.getElementById('sync-label');
+  const det = document.getElementById('sync-status-detail');
+  dot.className = 'sync-dot ' + state;
+  lbl.textContent = state === 'synced' ? 'synced' : state === 'syncing' ? 'syncing…' : state === 'error' ? 'sync error' : 'not connected';
+  if (det) det.textContent = msg || '';
 }
 
-// ===================== PAGES =====================
+async function dbGet(table) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?select=*`, { headers: HEADERS });
+    if (!r.ok) throw new Error(r.status);
+    const rows = await r.json();
+    return rows.map(row => row.data);
+  } catch(e) { return null; }
+}
+
+async function dbUpsert(table, item) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+      method: 'POST',
+      headers: { ...HEADERS, 'Prefer': 'resolution=merge-duplicates' },
+      body: JSON.stringify({ id: item.id, data: item })
+    });
+    return r.ok;
+  } catch(e) { return false; }
+}
+
+async function dbDelete(table, id) {
+  try {
+    const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, { method: 'DELETE', headers: HEADERS });
+    return r.ok;
+  } catch(e) { return false; }
+}
+
+async function syncAll() {
+  setSyncStatus('syncing', 'Loading data from cloud…');
+  try {
+    const [g, r, b, w, d, h] = await Promise.all([
+      dbGet('goals'), dbGet('runs'), dbGet('books'),
+      dbGet('weights'), dbGet('dates'), dbGet('holdings')
+    ]);
+    if (g === null) throw new Error('Failed');
+    goals = g || []; runs = r || []; books = b || [];
+    weights = w || []; dates = d || []; holdings = h || [];
+    setSyncStatus('synced', 'All data synced from cloud. Last sync: ' + new Date().toLocaleTimeString());
+    renderHome();
+  } catch(e) {
+    setSyncStatus('error', 'Could not reach Supabase. Check your project is active.');
+  }
+}
+
+async function push(table, item) {
+  setSyncStatus('syncing', 'Saving…');
+  const ok = await dbUpsert(table, item);
+  if (ok) setSyncStatus('synced', 'Saved. Last sync: ' + new Date().toLocaleTimeString());
+  else setSyncStatus('error', 'Save failed — check connection.');
+}
+
+async function remove(table, id) {
+  setSyncStatus('syncing', 'Deleting…');
+  const ok = await dbDelete(table, id);
+  if (ok) setSyncStatus('synced', 'Deleted. Last sync: ' + new Date().toLocaleTimeString());
+  else setSyncStatus('error', 'Delete failed.');
+}
+
+// ── PAGES ────────────────────────────────────────────────
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
-  const tabs = document.querySelectorAll('.nav-tab');
   const map = {home:0,goals:1,training:2,portfolio:3,health:4,ai:5,settings:6};
+  const tabs = document.querySelectorAll('.nav-tab');
   if (map[id] !== undefined && tabs[map[id]]) tabs[map[id]].classList.add('active');
-  if (id === 'home') renderHome();
-  if (id === 'goals') renderGoals();
-  if (id === 'training') { renderTraining(); renderBooks(); }
-  if (id === 'portfolio') { renderHoldings(); fetchPrices(); }
-  if (id === 'health') { renderWeightChart(); renderDates(); }
-  if (id === 'settings') {
-    document.getElementById('api-key-input').value = S.get('api_key') || '';
-    const op = S.get('bg_opacity') || 15;
-    const bl = S.get('bg_blur') || 0;
+  if (id==='home') renderHome();
+  if (id==='goals') renderGoals();
+  if (id==='training') { renderTraining(); renderBooks(); }
+  if (id==='portfolio') { renderHoldings(); fetchPrices(); }
+  if (id==='health') { renderWeightChart(); renderDates(); }
+  if (id==='settings') {
+    document.getElementById('api-key-input').value = localStorage.getItem('api_key') || '';
+    const op = localStorage.getItem('bg_opacity') || 15;
+    const bl = localStorage.getItem('bg_blur') || 0;
     document.getElementById('bg-opacity-range').value = op;
     document.getElementById('bg-blur-range').value = bl;
     document.getElementById('opacity-val').textContent = op + '%';
@@ -827,589 +516,367 @@ function showPage(id) {
   }
 }
 
-// ===================== THEME =====================
+// ── THEME ────────────────────────────────────────────────
 function setTheme(t) {
-  currentTheme = t;
-  S.set('theme', t);
+  localStorage.setItem('theme', t);
   document.body.className = t === 'dark' ? '' : 'theme-' + t;
   document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-  const el = document.getElementById('sw-' + t);
-  if (el) el.classList.add('active');
+  const el = document.getElementById('sw-' + t); if (el) el.classList.add('active');
 }
 function handleBgUpload(e) {
-  const f = e.target.files[0];
-  if (!f) return;
+  const f = e.target.files[0]; if (!f) return;
   const r = new FileReader();
   r.onload = ev => {
-    S.set('bg_image', ev.target.result);
-    document.getElementById('bg-layer').style.backgroundImage = `url('${ev.target.result}')`;
-    document.documentElement.style.setProperty('--bg-image', `url('${ev.target.result}')`);
+    localStorage.setItem('bg_image', ev.target.result);
+    applyBg(ev.target.result);
   };
   r.readAsDataURL(f);
 }
-function setBgOpacity(v) {
-  S.set('bg_opacity', v);
-  document.getElementById('opacity-val').textContent = v + '%';
-  document.getElementById('bg-layer').style.opacity = v / 100;
+function applyBg(src) {
+  const el = document.getElementById('bg-layer');
+  el.style.backgroundImage = src ? `url('${src}')` : '';
 }
-function setBgBlur(v) {
-  S.set('bg_blur', v);
-  document.getElementById('blur-val').textContent = v + 'px';
-  document.getElementById('bg-layer').style.filter = `blur(${v}px)`;
-}
-function removeBg() {
-  S.del('bg_image');
-  document.getElementById('bg-layer').style.backgroundImage = '';
-}
+function setBgOpacity(v) { localStorage.setItem('bg_opacity',v); document.getElementById('opacity-val').textContent=v+'%'; document.getElementById('bg-layer').style.opacity=v/100; }
+function setBgBlur(v) { localStorage.setItem('bg_blur',v); document.getElementById('blur-val').textContent=v+'px'; document.getElementById('bg-layer').style.filter=`blur(${v}px)`; }
+function removeBg() { localStorage.removeItem('bg_image'); document.getElementById('bg-layer').style.backgroundImage=''; }
+function saveApiKey(v) { localStorage.setItem('api_key', v); }
 
-// ===================== HOME =====================
+// ── HOME ─────────────────────────────────────────────────
 function renderHome() {
-  const now = new Date();
-  const h = now.getHours();
-  const greet = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
-  document.getElementById('greeting').textContent = `${greet}, Liam`;
-  document.getElementById('home-date').textContent = now.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
-
-  const active = goals.filter(g => !g.done).length;
-  const done = goals.filter(g => g.done).length;
-  document.getElementById('s-active-goals').textContent = active;
-  document.getElementById('s-goals-done').textContent = done + ' completed';
-
-  const yr = now.getFullYear();
-  const booksThisYear = books.filter(b => b.date && b.date.startsWith(yr)).length;
-  document.getElementById('s-books').textContent = booksThisYear;
-
-  const thisWeek = getThisWeekKm();
-  document.getElementById('s-km').textContent = thisWeek;
-
-  const latest = weights.length ? weights[weights.length - 1].kg : null;
-  document.getElementById('s-weight').textContent = latest ? latest + ' kg' : '—';
-
-  // goals
+  const now = new Date(); const h = now.getHours();
+  document.getElementById('greeting').textContent = (h<12?'Good morning':h<17?'Good afternoon':'Good evening') + ', Liam';
+  document.getElementById('home-date').textContent = now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('s-active-goals').textContent = goals.filter(g=>!g.done).length;
+  document.getElementById('s-goals-done').textContent = goals.filter(g=>g.done).length + ' completed';
+  document.getElementById('s-books').textContent = books.filter(b=>b.date&&b.date.startsWith(now.getFullYear())).length;
+  document.getElementById('s-km').textContent = getThisWeekKm();
+  const lw = weights.length ? weights[weights.length-1].kg : null;
+  document.getElementById('s-weight').textContent = lw ? lw + ' kg' : '—';
   const gl = document.getElementById('home-goals-list');
-  const urgent = goals.filter(g => !g.done).slice(0, 4);
-  if (!urgent.length) { gl.innerHTML = '<div class="empty-state"><div class="empty-icon">🎯</div>No active goals</div>'; }
-  else {
-    gl.innerHTML = urgent.map(g => `
-      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);">
-        <div style="flex:1;">
-          <div style="font-size:13px;font-weight:500;">${g.title}</div>
-          <div class="prog-wrap"><div class="prog-fill" style="width:${g.progress||0}%"></div></div>
-        </div>
-        <span style="font-size:12px;color:var(--text3);">${g.progress||0}%</span>
-      </div>`).join('');
-  }
-
-  // dates
+  const urgent = goals.filter(g=>!g.done).slice(0,4);
+  gl.innerHTML = urgent.length ? urgent.map(g=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);"><div style="flex:1;"><div style="font-size:13px;font-weight:500;">${g.title}</div><div class="prog-wrap"><div class="prog-fill" style="width:${g.progress||0}%"></div></div></div><span style="font-size:12px;color:var(--text3);">${g.progress||0}%</span></div>`).join('') : '<div class="empty-state"><div class="empty-icon">🎯</div>No active goals</div>';
   const dl = document.getElementById('home-dates-list');
   const upcoming = getUpcomingDates(5);
-  if (!upcoming.length) { dl.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div>No upcoming dates</div>'; }
-  else {
-    dl.innerHTML = upcoming.map(d => `
-      <div class="date-item">
-        <div class="date-countdown"><div class="date-days">${d.days}</div><div class="date-days-label">days</div></div>
-        <div><div class="date-name">${d.name}</div><div class="date-when">${d.typeLabel} · ${d.dateStr}</div></div>
-      </div>`).join('');
-  }
-
-  // mini run chart
+  dl.innerHTML = upcoming.length ? upcoming.map(d=>`<div class="date-item"><div class="date-countdown"><div class="date-days">${d.days}</div><div class="date-days-label">days</div></div><div><div style="font-size:13px;font-weight:500;">${d.name}</div><div style="font-size:12px;color:var(--text3);">${d.typeLabel} · ${d.dateStr}</div></div></div>`).join('') : '<div class="empty-state"><div class="empty-icon">📅</div>No upcoming dates</div>';
   renderMiniRunChart();
 }
-
 function getThisWeekKm() {
-  const now = new Date();
-  const mon = new Date(now); mon.setDate(now.getDate() - ((now.getDay()+6)%7)); mon.setHours(0,0,0,0);
-  const monStr = mon.toISOString().slice(0,10);
-  const entry = runs.find(r => r.date === monStr);
+  const now = new Date(); const mon = new Date(now); mon.setDate(now.getDate()-((now.getDay()+6)%7)); mon.setHours(0,0,0,0);
+  const entry = runs.find(r=>r.date===mon.toISOString().slice(0,10));
   return entry ? entry.km : 0;
 }
-
 function renderMiniRunChart() {
-  const el = document.getElementById('home-run-chart');
-  if (!el) return;
+  const el = document.getElementById('home-run-chart'); if (!el) return;
   const recent = [...runs].sort((a,b)=>a.date.localeCompare(b.date)).slice(-8);
-  if (!recent.length) { el.innerHTML = '<div class="empty-state" style="padding:1rem;"><div>No training logged yet</div></div>'; return; }
-  const max = Math.max(...recent.map(r=>r.km), 1);
-  el.innerHTML = recent.map(r => {
-    const h = Math.round((r.km / max) * 64);
-    const d = new Date(r.date);
-    const lbl = d.toLocaleDateString('en-GB', {day:'numeric',month:'short'});
-    return `<div class="run-bar-col">
-      <div class="run-bar-outer" style="height:64px;"><div class="run-bar-inner" style="height:${h}px;"></div></div>
-      <div class="run-bar-label">${lbl}</div>
-      <div class="run-bar-km">${r.km}</div>
-    </div>`;
-  }).join('');
+  if (!recent.length) { el.innerHTML='<div class="empty-state" style="padding:1rem;">No training logged yet</div>'; return; }
+  const max = Math.max(...recent.map(r=>r.km),1);
+  el.innerHTML = recent.map(r=>{const h2=Math.round((r.km/max)*64);const d=new Date(r.date);return`<div class="run-bar-col"><div class="run-bar-outer" style="height:64px;"><div class="run-bar-inner" style="height:${h2}px;"></div></div><div class="run-bar-label">${d.toLocaleDateString('en-GB',{day:'numeric',month:'short'})}</div><div class="run-bar-km">${r.km}</div></div>`;}).join('');
 }
 
-// ===================== GOALS =====================
-let goalFilter = 'all';
-let goalCatFilter = '';
+// ── GOALS ────────────────────────────────────────────────
 function filterGoals(f) {
   if (f) goalFilter = f;
   goalCatFilter = document.getElementById('goal-cat-filter').value;
-  ['all','active','done'].forEach(x => document.getElementById('gf-'+x).classList.toggle('btn-primary', goalFilter===x));
-  ['all','active','done'].forEach(x => document.getElementById('gf-'+x).classList.toggle('btn-ghost', goalFilter!==x));
+  ['all','active','done'].forEach(x=>{document.getElementById('gf-'+x).classList.toggle('btn-primary',goalFilter===x);document.getElementById('gf-'+x).classList.toggle('btn-ghost',goalFilter!==x);});
   renderGoals();
 }
 function renderGoals() {
   let filtered = [...goals];
-  if (goalFilter === 'active') filtered = filtered.filter(g => !g.done);
-  if (goalFilter === 'done') filtered = filtered.filter(g => g.done);
-  if (goalCatFilter) filtered = filtered.filter(g => g.cat === goalCatFilter);
+  if (goalFilter==='active') filtered=filtered.filter(g=>!g.done);
+  if (goalFilter==='done') filtered=filtered.filter(g=>g.done);
+  if (goalCatFilter) filtered=filtered.filter(g=>g.cat===goalCatFilter);
   const el = document.getElementById('goals-list');
-  if (!filtered.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">🎯</div>No goals here yet</div>'; }
-  else { el.innerHTML = filtered.map(goalCard).join(''); }
-
-  const ach = goals.filter(g => g.done);
-  const ae = document.getElementById('achieved-list');
-  if (!ach.length) { ae.innerHTML = '<div class="text-muted text-sm">No completed goals yet — keep going!</div>'; }
-  else { ae.innerHTML = ach.map(g => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span style="font-size:16px;">🏆</span><span>${g.title}</span><span class="badge badge-done" style="margin-left:auto;">${g.cat}</span><span style="font-size:11px;color:var(--text3);">${g.completedDate||''}</span><button class="btn btn-danger btn-sm btn-icon" onclick="deleteGoal('${g.id}')">🗑</button></div>`).join(''); }
+  el.innerHTML = filtered.length ? filtered.map(goalCard).join('') : '<div class="empty-state"><div class="empty-icon">🎯</div>No goals here yet</div>';
+  const ach = goals.filter(g=>g.done);
+  document.getElementById('achieved-list').innerHTML = ach.length ? ach.map(g=>`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px;"><span>🏆</span><span>${g.title}</span><span class="badge badge-done" style="margin-left:auto;">${g.cat}</span><span style="font-size:11px;color:var(--text3);">${g.completedDate||''}</span><button class="btn btn-danger btn-sm btn-icon" onclick="deleteGoal('${g.id}')">🗑</button></div>`).join('') : '<div class="text-muted text-sm">No completed goals yet — keep going!</div>';
 }
-
 function goalCard(g) {
-  const pct = g.progress || 0;
-  const overdue = g.deadline && !g.done && new Date(g.deadline) < new Date();
-  return `<div class="goal-item ${g.done ? 'goal-done' : ''}">
-    <div class="goal-header">
-      <div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="goal-title">${g.title}</div>
-          <span class="badge badge-cat">${g.cat}</span>
-          ${g.done ? '<span class="badge badge-done">Done</span>' : overdue ? '<span class="badge badge-overdue">Overdue</span>' : '<span class="badge badge-active">Active</span>'}
-        </div>
-        <div class="goal-meta">${g.deadline ? '📅 ' + g.deadline : ''}${g.notes ? ' · ' + g.notes.slice(0,60) : ''}</div>
-      </div>
-      <div class="goal-actions">
-        ${!g.done ? `<button class="btn btn-ghost btn-sm" onclick="openUpdateGoal('${g.id}')">Update</button>` : ''}
-        <button class="btn btn-ghost btn-sm" onclick="openGoalModal('${g.id}')">Edit</button>
-        <button class="btn btn-danger btn-sm btn-icon" onclick="deleteGoal('${g.id}')">🗑</button>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <div class="prog-wrap" style="flex:1;"><div class="prog-fill" style="width:${pct}%;${pct===100?'background:var(--green)':''}"></div></div>
-      <span style="font-size:12px;color:var(--text2);width:32px;text-align:right;">${pct}%</span>
-    </div>
-    ${g.lastUpdate ? `<div style="font-size:12px;color:var(--text3);margin-top:6px;">Last update: ${g.lastUpdate}</div>` : ''}
-  </div>`;
+  const pct=g.progress||0; const overdue=g.deadline&&!g.done&&new Date(g.deadline)<new Date();
+  return`<div class="goal-item ${g.done?'goal-done':''}"><div class="goal-header"><div><div style="display:flex;align-items:center;gap:8px;"><div class="goal-title">${g.title}</div><span class="badge badge-cat">${g.cat}</span>${g.done?'<span class="badge badge-done">Done</span>':overdue?'<span class="badge badge-overdue">Overdue</span>':'<span class="badge badge-active">Active</span>'}</div><div class="goal-meta">${g.deadline?'📅 '+g.deadline:''}${g.notes?' · '+g.notes.slice(0,60):''}</div></div><div class="goal-actions">${!g.done?`<button class="btn btn-ghost btn-sm" onclick="openUpdateGoal('${g.id}')">Update</button>`:''}<button class="btn btn-ghost btn-sm" onclick="openGoalModal('${g.id}')">Edit</button><button class="btn btn-danger btn-sm btn-icon" onclick="deleteGoal('${g.id}')">🗑</button></div></div><div style="display:flex;align-items:center;gap:10px;"><div class="prog-wrap" style="flex:1;"><div class="prog-fill" style="width:${pct}%;${pct===100?'background:var(--green)':''}"></div></div><span style="font-size:12px;color:var(--text2);width:32px;text-align:right;">${pct}%</span></div>${g.lastUpdate?`<div style="font-size:12px;color:var(--text3);margin-top:6px;">Last: ${g.lastUpdate}</div>`:''}</div>`;
 }
-
 function openGoalModal(id) {
-  editGoalId = id || null;
-  const g = id ? goals.find(x => x.id === id) : null;
+  editGoalId = id||null;
+  const g = id ? goals.find(x=>x.id===id) : null;
   document.getElementById('goal-modal-title').textContent = g ? 'Edit Goal' : 'Add Goal';
-  document.getElementById('g-title').value = g ? g.title : '';
-  document.getElementById('g-cat').value = g ? g.cat : 'Personal';
-  document.getElementById('g-deadline').value = g ? (g.deadline||'') : '';
-  document.getElementById('g-notes').value = g ? (g.notes||'') : '';
-  document.getElementById('g-progress').value = g ? (g.progress||0) : 0;
-  document.getElementById('g-update').value = '';
+  document.getElementById('g-title').value = g?g.title:'';
+  document.getElementById('g-cat').value = g?g.cat:'Personal';
+  document.getElementById('g-deadline').value = g?(g.deadline||''):'';
+  document.getElementById('g-notes').value = g?(g.notes||''):'';
+  document.getElementById('g-progress').value = g?(g.progress||0):0;
   openModal('goal-modal');
 }
-function saveGoal() {
+async function saveGoal() {
   const title = document.getElementById('g-title').value.trim();
-  if (!title) return alert('Please enter a goal title');
+  if (!title) return alert('Please enter a title');
+  let item;
   if (editGoalId) {
-    const g = goals.find(x => x.id === editGoalId);
-    if (g) { g.title=title; g.cat=document.getElementById('g-cat').value; g.deadline=document.getElementById('g-deadline').value; g.notes=document.getElementById('g-notes').value; g.progress=parseInt(document.getElementById('g-progress').value)||0; }
+    item = goals.find(x=>x.id===editGoalId);
+    if (item) { item.title=title; item.cat=document.getElementById('g-cat').value; item.deadline=document.getElementById('g-deadline').value; item.notes=document.getElementById('g-notes').value; item.progress=parseInt(document.getElementById('g-progress').value)||0; }
   } else {
-    goals.push({ id: uid(), title, cat: document.getElementById('g-cat').value, deadline: document.getElementById('g-deadline').value, notes: document.getElementById('g-notes').value, progress: parseInt(document.getElementById('g-progress').value)||0, done: false, created: today() });
+    item = {id:uid(),title,cat:document.getElementById('g-cat').value,deadline:document.getElementById('g-deadline').value,notes:document.getElementById('g-notes').value,progress:parseInt(document.getElementById('g-progress').value)||0,done:false,created:today()};
+    goals.push(item);
   }
-  save(); closeModal('goal-modal'); renderGoals(); renderHome();
+  await push('goals', item);
+  closeModal('goal-modal'); renderGoals(); renderHome();
 }
 function openUpdateGoal(id) {
-  const g = goals.find(x => x.id === id);
-  if (!g) return;
-  document.getElementById('ug-id').value = id;
-  document.getElementById('ug-title-display').textContent = g.title;
-  document.getElementById('ug-progress').value = g.progress || 0;
-  document.getElementById('ug-done').value = g.done ? '1' : '0';
-  document.getElementById('ug-note').value = '';
+  const g=goals.find(x=>x.id===id); if (!g) return;
+  document.getElementById('ug-id').value=id;
+  document.getElementById('ug-title-display').textContent=g.title;
+  document.getElementById('ug-progress').value=g.progress||0;
+  document.getElementById('ug-done').value=g.done?'1':'0';
+  document.getElementById('ug-note').value='';
   openModal('update-goal-modal');
 }
-function updateGoalProgress() {
-  const id = document.getElementById('ug-id').value;
-  const g = goals.find(x => x.id === id);
-  if (!g) return;
-  g.progress = parseInt(document.getElementById('ug-progress').value) || 0;
-  g.done = document.getElementById('ug-done').value === '1';
-  if (g.done) { g.progress = 100; g.completedDate = today(); }
-  const note = document.getElementById('ug-note').value.trim();
-  if (note) g.lastUpdate = note + ' (' + today() + ')';
-  save(); closeModal('update-goal-modal'); renderGoals(); renderHome();
+async function updateGoalProgress() {
+  const id=document.getElementById('ug-id').value;
+  const g=goals.find(x=>x.id===id); if (!g) return;
+  g.progress=parseInt(document.getElementById('ug-progress').value)||0;
+  g.done=document.getElementById('ug-done').value==='1';
+  if (g.done){g.progress=100;g.completedDate=today();}
+  const note=document.getElementById('ug-note').value.trim();
+  if (note) g.lastUpdate=note+' ('+today()+')';
+  await push('goals', g);
+  closeModal('update-goal-modal'); renderGoals(); renderHome();
 }
-function deleteGoal(id) {
+async function deleteGoal(id) {
   if (!confirm('Delete this goal?')) return;
-  goals = goals.filter(g => g.id !== id);
-  save(); renderGoals(); renderHome();
+  goals=goals.filter(g=>g.id!==id);
+  await remove('goals', id);
+  renderGoals(); renderHome();
 }
 
-// ===================== TRAINING =====================
+// ── TRAINING ─────────────────────────────────────────────
 function renderTraining() {
-  const sorted = [...runs].sort((a,b) => a.date.localeCompare(b.date));
-  const el = document.getElementById('run-log-table');
-  if (!sorted.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">🏃</div>No runs logged yet</div>'; }
-  else { el.innerHTML = `<table class="tbl"><thead><tr><th>Week of</th><th>km</th><th>Notes</th><th></th></tr></thead><tbody>${sorted.map(r=>`<tr><td>${r.date}</td><td style="font-weight:500">${r.km}</td><td style="color:var(--text2)">${r.notes||'—'}</td><td><button class="btn btn-danger btn-sm btn-icon" onclick="deleteRun('${r.id}')">🗑</button></td></tr>`).join('')}</tbody></table>`; }
-
-  const canvas = document.getElementById('run-canvas');
-  const last12 = sorted.slice(-12);
-  if (runChart) { runChart.destroy(); }
+  const sorted=[...runs].sort((a,b)=>a.date.localeCompare(b.date));
+  const el=document.getElementById('run-log-table');
+  el.innerHTML=sorted.length?`<table class="tbl"><thead><tr><th>Week of</th><th>km</th><th>Notes</th><th></th></tr></thead><tbody>${sorted.map(r=>`<tr><td>${r.date}</td><td style="font-weight:500">${r.km}</td><td style="color:var(--text2)">${r.notes||'—'}</td><td><button class="btn btn-danger btn-sm btn-icon" onclick="deleteRun('${r.id}')">🗑</button></td></tr>`).join('')}</tbody></table>`:'<div class="empty-state"><div class="empty-icon">🏃</div>No runs logged yet</div>';
+  const canvas=document.getElementById('run-canvas');
+  const last12=sorted.slice(-12);
+  if (runChart){runChart.destroy();runChart=null;}
   if (!last12.length) return;
-  runChart = new Chart(canvas, {
-    type: 'bar',
-    data: {
-      labels: last12.map(r => { const d = new Date(r.date); return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'}); }),
-      datasets: [{ data: last12.map(r=>r.km), backgroundColor: 'rgba(124,106,247,0.5)', borderColor: 'rgba(124,106,247,0.9)', borderWidth: 2, borderRadius: 4 }]
-    },
-    options: { responsive:true, plugins:{legend:{display:false}}, scales: { x:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}}}, y:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.05)'}} } }
-  });
+  runChart=new Chart(canvas,{type:'bar',data:{labels:last12.map(r=>{const d=new Date(r.date);return d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});}),datasets:[{data:last12.map(r=>r.km),backgroundColor:'rgba(124,106,247,0.5)',borderColor:'rgba(124,106,247,0.9)',borderWidth:2,borderRadius:4}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}}},y:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.05)'}}}}});
 }
 function openRunModal() {
-  document.getElementById('r-date').value = getMondayOfWeek();
-  document.getElementById('r-km').value = '';
-  document.getElementById('r-notes').value = '';
+  document.getElementById('r-date').value=getMondayOfWeek();
+  document.getElementById('r-km').value='';
+  document.getElementById('r-notes').value='';
   openModal('run-modal');
 }
-function saveRun() {
-  const date = document.getElementById('r-date').value;
-  const km = parseFloat(document.getElementById('r-km').value);
-  if (!date || !km) return alert('Please fill in date and km');
-  const existing = runs.find(r => r.date === date);
-  if (existing) { existing.km = km; existing.notes = document.getElementById('r-notes').value; }
-  else { runs.push({ id: uid(), date, km, notes: document.getElementById('r-notes').value }); }
-  save(); closeModal('run-modal'); renderTraining(); renderHome();
+async function saveRun() {
+  const date=document.getElementById('r-date').value;
+  const km=parseFloat(document.getElementById('r-km').value);
+  if (!date||!km) return alert('Fill in date and km');
+  let item=runs.find(r=>r.date===date);
+  if (item){item.km=km;item.notes=document.getElementById('r-notes').value;}
+  else{item={id:uid(),date,km,notes:document.getElementById('r-notes').value};runs.push(item);}
+  await push('runs',item);
+  closeModal('run-modal'); renderTraining(); renderHome();
 }
-function deleteRun(id) {
-  runs = runs.filter(r => r.id !== id);
-  save(); renderTraining(); renderHome();
+async function deleteRun(id) {
+  runs=runs.filter(r=>r.id!==id);
+  await remove('runs',id);
+  renderTraining(); renderHome();
 }
-function getMondayOfWeek() {
-  const d = new Date(); const day = d.getDay(); const diff = (day + 6) % 7;
-  d.setDate(d.getDate() - diff); return d.toISOString().slice(0,10);
-}
+function getMondayOfWeek(){const d=new Date();const diff=(d.getDay()+6)%7;d.setDate(d.getDate()-diff);return d.toISOString().slice(0,10);}
 
-// ===================== BOOKS =====================
+// ── BOOKS ─────────────────────────────────────────────────
 function renderBooks() {
-  const el = document.getElementById('books-list');
-  const sorted = [...books].sort((a,b)=>b.date.localeCompare(a.date));
-  if (!sorted.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">📚</div>No books yet</div>'; return; }
-  el.innerHTML = sorted.map(b => `
-    <div class="book-item">
-      <div class="book-icon">📖</div>
-      <div>
-        <div class="book-title">${b.title}</div>
-        <div class="book-author">${b.author||'Unknown author'}</div>
-      </div>
-      <div class="book-date">${b.date}</div>
-      <button class="btn btn-danger btn-sm btn-icon" onclick="deleteBook('${b.id}')">🗑</button>
-    </div>`).join('');
+  const el=document.getElementById('books-list');
+  const sorted=[...books].sort((a,b)=>b.date.localeCompare(a.date));
+  el.innerHTML=sorted.length?sorted.map(b=>`<div class="book-item"><div class="book-icon">📖</div><div><div style="font-size:14px;font-weight:500;">${b.title}</div><div style="font-size:12px;color:var(--text3);">${b.author||'Unknown'}</div></div><div style="font-size:12px;color:var(--text2);margin-left:auto;">${b.date}</div><button class="btn btn-danger btn-sm btn-icon" onclick="deleteBook('${b.id}')">🗑</button></div>`).join(''):'<div class="empty-state"><div class="empty-icon">📚</div>No books yet</div>';
 }
-function openBookModal() {
-  document.getElementById('b-title').value=''; document.getElementById('b-author').value='';
-  document.getElementById('b-date').value=today(); document.getElementById('b-notes').value='';
-  openModal('book-modal');
+function openBookModal(){document.getElementById('b-title').value='';document.getElementById('b-author').value='';document.getElementById('b-date').value=today();document.getElementById('b-notes').value='';openModal('book-modal');}
+async function saveBook(){
+  const title=document.getElementById('b-title').value.trim();
+  if (!title) return alert('Enter a title');
+  const item={id:uid(),title,author:document.getElementById('b-author').value,date:document.getElementById('b-date').value,notes:document.getElementById('b-notes').value};
+  books.push(item);
+  await push('books',item);
+  closeModal('book-modal'); renderBooks(); renderHome();
 }
-function saveBook() {
-  const title = document.getElementById('b-title').value.trim();
-  if (!title) return alert('Please enter a title');
-  books.push({ id:uid(), title, author:document.getElementById('b-author').value, date:document.getElementById('b-date').value, notes:document.getElementById('b-notes').value });
-  save(); closeModal('book-modal'); renderBooks(); renderHome();
-}
-function deleteBook(id) {
-  books = books.filter(b=>b.id!==id); save(); renderBooks(); renderHome();
-}
+async function deleteBook(id){books=books.filter(b=>b.id!==id);await remove('books',id);renderBooks();renderHome();}
 
-// ===================== WEIGHT =====================
+// ── WEIGHT ────────────────────────────────────────────────
 function renderWeightChart() {
-  const canvas = document.getElementById('weight-canvas');
-  const sorted = [...weights].sort((a,b)=>a.date.localeCompare(b.date));
-  if (weightChart) weightChart.destroy();
-  if (!sorted.length) { document.getElementById('weight-stats').innerHTML = '<div class="empty-state"><div class="empty-icon">⚖️</div>No weight logged yet</div>'; return; }
-  weightChart = new Chart(canvas, {
-    type: 'line',
-    data: {
-      labels: sorted.map(w=>w.date),
-      datasets: [{ data: sorted.map(w=>w.kg), borderColor:'rgba(124,106,247,0.9)', backgroundColor:'rgba(124,106,247,0.08)', borderWidth:2, pointRadius:3, fill:true, tension:0.3 }]
-    },
-    options: { responsive:true, plugins:{legend:{display:false}}, scales:{ x:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},display:sorted.length<20}, y:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.05)'}} } }
-  });
-  const kgs = sorted.map(w=>w.kg);
-  const latest = kgs[kgs.length-1];
-  const first = kgs[0];
-  const diff = (latest - first).toFixed(1);
-  const sign = diff > 0 ? '+' : '';
-  document.getElementById('weight-stats').innerHTML = `<div style="display:flex;gap:16px;font-size:13px;color:var(--text2);"><span>Latest: <b style="color:var(--text)">${latest} kg</b></span><span>Change: <b style="color:${diff>0?'var(--red)':'var(--green)'}">${sign}${diff} kg</b></span><span>Entries: ${sorted.length}</span></div>`;
+  const canvas=document.getElementById('weight-canvas');
+  const sorted=[...weights].sort((a,b)=>a.date.localeCompare(b.date));
+  if (weightChart){weightChart.destroy();weightChart=null;}
+  if (!sorted.length){document.getElementById('weight-stats').innerHTML='<div class="empty-state"><div class="empty-icon">⚖️</div>No weight logged yet</div>';return;}
+  weightChart=new Chart(canvas,{type:'line',data:{labels:sorted.map(w=>w.date),datasets:[{data:sorted.map(w=>w.kg),borderColor:'rgba(124,106,247,0.9)',backgroundColor:'rgba(124,106,247,0.08)',borderWidth:2,pointRadius:3,fill:true,tension:0.3}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},display:sorted.length<20},y:{ticks:{color:'rgba(240,240,245,0.4)',font:{size:11}},grid:{color:'rgba(255,255,255,0.05)'}}}}});
+  const kgs=sorted.map(w=>w.kg);const latest=kgs[kgs.length-1];const first=kgs[0];const diff=(latest-first).toFixed(1);const sign=diff>0?'+':'';
+  document.getElementById('weight-stats').innerHTML=`<div style="display:flex;gap:16px;font-size:13px;color:var(--text2);"><span>Latest: <b style="color:var(--text)">${latest} kg</b></span><span>Change: <b style="color:${diff>0?'var(--red)':'var(--green)'}">${sign}${diff} kg</b></span><span>Entries: ${sorted.length}</span></div>`;
 }
-function openWeightModal() {
-  document.getElementById('w-date').value = today();
-  document.getElementById('w-kg').value = '';
-  openModal('weight-modal');
-}
-function saveWeight() {
-  const date = document.getElementById('w-date').value;
-  const kg = parseFloat(document.getElementById('w-kg').value);
-  if (!date || !kg) return alert('Please fill both fields');
-  const ex = weights.find(w=>w.date===date);
-  if (ex) ex.kg = kg; else weights.push({id:uid(),date,kg});
-  save(); closeModal('weight-modal'); renderWeightChart();
+function openWeightModal(){document.getElementById('w-date').value=today();document.getElementById('w-kg').value='';openModal('weight-modal');}
+async function saveWeight(){
+  const date=document.getElementById('w-date').value;const kg=parseFloat(document.getElementById('w-kg').value);
+  if (!date||!kg) return alert('Fill both fields');
+  let item=weights.find(w=>w.date===date);
+  if (item){item.kg=kg;}else{item={id:uid(),date,kg};weights.push(item);}
+  await push('weights',item);
+  closeModal('weight-modal'); renderWeightChart();
 }
 
-// ===================== DATES =====================
+// ── DATES ─────────────────────────────────────────────────
 function getUpcomingDates(n) {
-  const now = new Date(); now.setHours(0,0,0,0);
-  return dates.map(d => {
-    let dt = new Date(d.date);
-    if (d.recurring) { dt.setFullYear(now.getFullYear()); if (dt < now) dt.setFullYear(now.getFullYear()+1); }
-    const days = Math.round((dt - now) / 86400000);
-    return { ...d, nextDate: dt, days, dateStr: dt.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}), typeLabel: d.type };
-  }).filter(d => d.days >= 0).sort((a,b)=>a.days-b.days).slice(0,n||100);
+  const now=new Date();now.setHours(0,0,0,0);
+  return dates.map(d=>{
+    let dt=new Date(d.date);
+    if (d.recurring){dt.setFullYear(now.getFullYear());if(dt<now)dt.setFullYear(now.getFullYear()+1);}
+    const days=Math.round((dt-now)/86400000);
+    return{...d,days,dateStr:dt.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}),typeLabel:d.type};
+  }).filter(d=>d.days>=0).sort((a,b)=>a.days-b.days).slice(0,n||100);
 }
-function renderDates() {
-  const el = document.getElementById('dates-list');
-  const upcoming = getUpcomingDates();
-  if (!upcoming.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">📅</div>No dates added</div>'; return; }
-  el.innerHTML = upcoming.map(d => `
-    <div class="date-item">
-      <div class="date-countdown"><div class="date-days">${d.days===0?'🎉':d.days}</div><div class="date-days-label">${d.days===0?'today':'days'}</div></div>
-      <div style="flex:1"><div class="date-name">${d.name}</div><div class="date-when">${d.typeLabel} · ${d.dateStr}${d.recurring?' · recurring':''}</div></div>
-      <button class="btn btn-danger btn-sm btn-icon" onclick="deleteDate('${d.id}')">🗑</button>
-    </div>`).join('');
+function renderDates(){
+  const el=document.getElementById('dates-list');
+  const upcoming=getUpcomingDates();
+  el.innerHTML=upcoming.length?upcoming.map(d=>`<div class="date-item"><div class="date-countdown"><div class="date-days">${d.days===0?'🎉':d.days}</div><div class="date-days-label">${d.days===0?'today':'days'}</div></div><div style="flex:1"><div style="font-size:13px;font-weight:500;">${d.name}</div><div style="font-size:12px;color:var(--text3);">${d.typeLabel} · ${d.dateStr}${d.recurring?' · recurring':''}</div></div><button class="btn btn-danger btn-sm btn-icon" onclick="deleteDate('${d.id}')">🗑</button></div>`).join(''):'<div class="empty-state"><div class="empty-icon">📅</div>No dates added</div>';
 }
-function openDateModal() {
-  document.getElementById('d-name').value=''; document.getElementById('d-date').value='';
-  document.getElementById('d-type').value='Birthday'; document.getElementById('d-recurring').checked=false;
-  openModal('date-modal');
+function openDateModal(){document.getElementById('d-name').value='';document.getElementById('d-date').value='';document.getElementById('d-type').value='Birthday';document.getElementById('d-recurring').checked=false;openModal('date-modal');}
+async function saveDate(){
+  const name=document.getElementById('d-name').value.trim();const date=document.getElementById('d-date').value;
+  if (!name||!date) return alert('Fill name and date');
+  const item={id:uid(),name,date,type:document.getElementById('d-type').value,recurring:document.getElementById('d-recurring').checked};
+  dates.push(item);
+  await push('dates',item);
+  closeModal('date-modal'); renderDates(); renderHome();
 }
-function saveDate() {
-  const name = document.getElementById('d-name').value.trim();
-  const date = document.getElementById('d-date').value;
-  if (!name||!date) return alert('Please fill name and date');
-  dates.push({id:uid(),name,date,type:document.getElementById('d-type').value,recurring:document.getElementById('d-recurring').checked});
-  save(); closeModal('date-modal'); renderDates(); renderHome();
-}
-function deleteDate(id) { dates=dates.filter(d=>d.id!==id); save(); renderDates(); renderHome(); }
+async function deleteDate(id){dates=dates.filter(d=>d.id!==id);await remove('dates',id);renderDates();renderHome();}
 
-// ===================== PORTFOLIO =====================
-function renderHoldings() {
-  const el = document.getElementById('holdings-table');
-  if (!holdings.length) { el.innerHTML = '<div class="empty-state"><div class="empty-icon">📈</div>No holdings yet — add your first stock</div>'; updatePortStats(); return; }
-  el.innerHTML = `<table class="tbl"><thead><tr><th>Ticker</th><th>Name</th><th>Shares</th><th>Avg Cost</th><th>Live Price</th><th>Value</th><th>P&L</th><th>%</th><th></th></tr></thead><tbody id="holdings-tbody"></tbody></table>`;
+// ── PORTFOLIO ─────────────────────────────────────────────
+function renderHoldings(){
+  const el=document.getElementById('holdings-table');
+  if (!holdings.length){el.innerHTML='<div class="empty-state"><div class="empty-icon">📈</div>No holdings yet</div>';updatePortStats();return;}
+  el.innerHTML=`<table class="tbl"><thead><tr><th>Ticker</th><th>Name</th><th>Shares</th><th>Avg Cost</th><th>Live Price</th><th>Value</th><th>P&L</th><th>%</th><th></th></tr></thead><tbody id="holdings-tbody"></tbody></table>`;
   updateHoldingsRows();
 }
-function updateHoldingsRows() {
-  const tb = document.getElementById('holdings-tbody');
-  if (!tb) return;
-  tb.innerHTML = holdings.map(h => {
-    const live = prices[h.ticker];
-    const val = live ? (live * h.shares).toFixed(2) : '—';
-    const cost = (h.cost * h.shares).toFixed(2);
-    const pnl = live ? ((live - h.cost) * h.shares).toFixed(2) : '—';
-    const pct = live ? (((live - h.cost) / h.cost) * 100).toFixed(2) : '—';
-    const up = live && live >= h.cost;
-    return `<tr>
-      <td><b>${h.ticker}</b></td>
-      <td style="color:var(--text2)">${h.name||'—'}</td>
-      <td>${h.shares}</td>
-      <td>${h.currency||''}${h.cost}</td>
-      <td>${live ? (h.currency||'') + live.toFixed(2) : '<span style="color:var(--text3)">fetching…</span>'}</td>
-      <td>${live ? (h.currency||'') + val : '—'}</td>
-      <td class="${live ? (up?'up':'down') : ''}">${pnl !== '—' ? (up?'+':'')+pnl : '—'}</td>
-      <td class="${live ? (up?'up':'down') : ''}">${pct !== '—' ? (up?'+':'')+pct+'%' : '—'}</td>
-      <td><button class="btn btn-ghost btn-sm btn-icon" onclick="openHoldingModal('${h.id}')">✏️</button> <button class="btn btn-danger btn-sm btn-icon" onclick="deleteHolding('${h.id}')">🗑</button></td>
-    </tr>`;
+function updateHoldingsRows(){
+  const tb=document.getElementById('holdings-tbody');if (!tb) return;
+  tb.innerHTML=holdings.map(h=>{
+    const live=prices[h.ticker];const val=live?(live*h.shares).toFixed(2):'—';const cost=(h.cost*h.shares).toFixed(2);
+    const pnl=live?((live-h.cost)*h.shares).toFixed(2):'—';const pct=live?(((live-h.cost)/h.cost)*100).toFixed(2):'—';const up=live&&live>=h.cost;
+    return`<tr><td><b>${h.ticker}</b></td><td style="color:var(--text2)">${h.name||'—'}</td><td>${h.shares}</td><td>${h.currency||''}${h.cost}</td><td>${live?(h.currency||'')+live.toFixed(2):'<span style="color:var(--text3)">fetching…</span>'}</td><td>${live?(h.currency||'')+val:'—'}</td><td class="${live?(up?'up':'down'):''}">${pnl!=='—'?(up?'+':'')+pnl:'—'}</td><td class="${live?(up?'up':'down'):''}">${pct!=='—'?(up?'+':'')+pct+'%':'—'}</td><td><button class="btn btn-ghost btn-sm btn-icon" onclick="openHoldingModal('${h.id}')">✏️</button> <button class="btn btn-danger btn-sm btn-icon" onclick="deleteHolding('${h.id}')">🗑</button></td></tr>`;
   }).join('');
   updatePortStats();
 }
-function updatePortStats() {
-  let totalVal = 0, totalCost = 0, hasLive = false;
-  holdings.forEach(h => {
-    const live = prices[h.ticker];
-    totalCost += h.cost * h.shares;
-    if (live) { totalVal += live * h.shares; hasLive = true; }
-  });
-  document.getElementById('port-total').textContent = hasLive ? '£' + totalVal.toFixed(0) : '—';
-  document.getElementById('port-cost').textContent = holdings.length ? '£' + totalCost.toFixed(0) : '—';
-  if (hasLive && totalCost > 0) {
-    const pnl = totalVal - totalCost;
-    const pct = ((pnl/totalCost)*100).toFixed(1);
-    document.getElementById('port-pnl').textContent = (pnl>=0?'+':'') + '£' + pnl.toFixed(0);
-    document.getElementById('port-pnl').className = 'stat-val ' + (pnl>=0?'text-green':'text-red');
-    document.getElementById('port-pnl-pct').textContent = (pnl>=0?'+':'') + pct + '%';
-  }
-  const s = document.getElementById('s-port-val');
-  if (s) { s.textContent = hasLive ? '£' + totalVal.toFixed(0) : (holdings.length ? 'loading' : '—'); }
-  const sc = document.getElementById('s-port-change');
-  if (sc && hasLive && totalCost > 0) {
-    const pnl = totalVal - totalCost;
-    sc.textContent = (pnl>=0?'+':'') + '£' + pnl.toFixed(0) + ' P&L';
-    sc.className = 'stat-sub ' + (pnl>=0?'text-green':'text-red');
-  }
+function updatePortStats(){
+  let totalVal=0,totalCost=0,hasLive=false;
+  holdings.forEach(h=>{const live=prices[h.ticker];totalCost+=h.cost*h.shares;if(live){totalVal+=live*h.shares;hasLive=true;}});
+  document.getElementById('port-total').textContent=hasLive?'£'+totalVal.toFixed(0):'—';
+  document.getElementById('port-cost').textContent=holdings.length?'£'+totalCost.toFixed(0):'—';
+  if (hasLive&&totalCost>0){const pnl=totalVal-totalCost;const pct=((pnl/totalCost)*100).toFixed(1);document.getElementById('port-pnl').textContent=(pnl>=0?'+':'')+'£'+pnl.toFixed(0);document.getElementById('port-pnl').className='stat-val '+(pnl>=0?'text-green':'text-red');document.getElementById('port-pnl-pct').textContent=(pnl>=0?'+':'')+pct+'%';}
+  const sv=document.getElementById('s-port-val');if(sv)sv.textContent=hasLive?'£'+totalVal.toFixed(0):(holdings.length?'loading':'—');
+  const sc=document.getElementById('s-port-change');if(sc&&hasLive&&totalCost>0){const pnl=totalVal-totalCost;sc.textContent=(pnl>=0?'+':'')+'£'+pnl.toFixed(0)+' P&L';sc.className='stat-sub '+(pnl>=0?'text-green':'text-red');}
 }
-async function fetchPrices() {
+async function fetchPrices(){
   if (!holdings.length) return;
-  for (const h of holdings) {
-    try {
-      const r = await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${h.ticker}?interval=1d&range=1d`);
-      const d = await r.json();
-      const p = d?.chart?.result?.[0]?.meta?.regularMarketPrice;
-      if (p) prices[h.ticker] = p;
-    } catch(e) {}
+  for (const h of holdings){
+    try{const r=await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${h.ticker}?interval=1d&range=1d`);const d=await r.json();const p=d?.chart?.result?.[0]?.meta?.regularMarketPrice;if(p)prices[h.ticker]=p;}catch(e){}
     updateHoldingsRows();
   }
 }
-function openHoldingModal(id) {
-  editHoldId = id || null;
-  const h = id ? holdings.find(x=>x.id===id) : null;
-  document.getElementById('hold-modal-title').textContent = h ? 'Edit Holding' : 'Add Holding';
-  document.getElementById('hold-id').value = id || '';
-  document.getElementById('hold-ticker').value = h ? h.ticker : '';
-  document.getElementById('hold-name').value = h ? (h.name||'') : '';
-  document.getElementById('hold-shares').value = h ? h.shares : '';
-  document.getElementById('hold-cost').value = h ? h.cost : '';
-  document.getElementById('hold-currency').value = h ? (h.currency||'USD') : 'USD';
+function openHoldingModal(id){
+  editHoldId=id||null;const h=id?holdings.find(x=>x.id===id):null;
+  document.getElementById('hold-modal-title').textContent=h?'Edit Holding':'Add Holding';
+  document.getElementById('hold-id').value=id||'';
+  document.getElementById('hold-ticker').value=h?h.ticker:'';
+  document.getElementById('hold-name').value=h?(h.name||''):'';
+  document.getElementById('hold-shares').value=h?h.shares:'';
+  document.getElementById('hold-cost').value=h?h.cost:'';
+  document.getElementById('hold-currency').value=h?(h.currency||'USD'):'USD';
   openModal('holding-modal');
 }
-function saveHolding() {
-  const ticker = document.getElementById('hold-ticker').value.toUpperCase().trim();
-  const shares = parseFloat(document.getElementById('hold-shares').value);
-  const cost = parseFloat(document.getElementById('hold-cost').value);
-  if (!ticker||!shares||!cost) return alert('Please fill ticker, shares and cost');
-  const data = { ticker, name:document.getElementById('hold-name').value, shares, cost, currency:document.getElementById('hold-currency').value };
-  if (editHoldId) { const h=holdings.find(x=>x.id===editHoldId); if(h) Object.assign(h,data); }
-  else { holdings.push({id:uid(),...data}); }
-  save(); closeModal('holding-modal'); renderHoldings(); fetchPrices();
+async function saveHolding(){
+  const ticker=document.getElementById('hold-ticker').value.toUpperCase().trim();
+  const shares=parseFloat(document.getElementById('hold-shares').value);
+  const cost=parseFloat(document.getElementById('hold-cost').value);
+  if (!ticker||!shares||!cost) return alert('Fill ticker, shares and cost');
+  const data2={ticker,name:document.getElementById('hold-name').value,shares,cost,currency:document.getElementById('hold-currency').value};
+  let item;
+  if (editHoldId){item=holdings.find(x=>x.id===editHoldId);if(item)Object.assign(item,data2);}
+  else{item={id:uid(),...data2};holdings.push(item);}
+  await push('holdings',item);
+  closeModal('holding-modal'); renderHoldings(); fetchPrices();
 }
-function deleteHolding(id) {
+async function deleteHolding(id){
   if (!confirm('Remove this holding?')) return;
-  holdings=holdings.filter(h=>h.id!==id); save(); renderHoldings();
+  holdings=holdings.filter(h=>h.id!==id);
+  await remove('holdings',id);
+  renderHoldings();
 }
 
-// ===================== AI CHAT =====================
-async function sendChat() {
-  const input = document.getElementById('chat-input');
-  const msg = input.value.trim();
-  if (!msg) return;
-  input.value = '';
-  appendMessage('user', msg);
-  document.getElementById('chat-typing').style.display = 'flex';
-  scrollChat();
+// ── AI CHAT ───────────────────────────────────────────────
+async function sendChat(){
+  const input=document.getElementById('chat-input');const msg=input.value.trim();if (!msg) return;
+  input.value='';appendMessage('user',msg);
+  document.getElementById('chat-typing').style.display='flex';scrollChat();
+  const key=localStorage.getItem('api_key');
+  if (!key){document.getElementById('chat-typing').style.display='none';appendMessage('ai','I need an Anthropic API key to work. Go to Settings and paste yours in — get one free at console.anthropic.com.');return;}
+  chatHistory.push({role:'user',content:msg});
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-client-side-keys':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,system:`You are Liam's personal life coach embedded in his dashboard. Be concise, direct, and motivating. Background: 22-year-old aerospace engineering graduate, Newcastle UK. Wants to work in high finance in HK/SG, build a conglomerate, runs ultra trails competitively. Current data:\n\nACTIVE GOALS: ${goals.filter(g=>!g.done).map(g=>`${g.title} [${g.cat}, ${g.progress||0}%, deadline:${g.deadline||'none'}${g.lastUpdate?', last: '+g.lastUpdate:''}]`).join('; ')||'none'}\nCOMPLETED GOALS: ${goals.filter(g=>g.done).map(g=>g.title).join(', ')||'none'}\nUPCOMING DATES: ${getUpcomingDates(5).map(d=>`${d.name} in ${d.days} days`).join(', ')||'none'}\nRECENT RUNS: ${[...runs].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4).map(r=>`${r.date}: ${r.km}km`).join(', ')||'none'}\nBOOKS THIS YEAR: ${books.filter(b=>b.date&&b.date.startsWith(new Date().getFullYear())).length}\nWEIGHT: ${weights.length?weights[weights.length-1].kg+'kg':'not logged'}\nHOLDINGS: ${holdings.length} stocks`,messages:chatHistory.slice(-10)})});
+    const data=await res.json();
+    document.getElementById('chat-typing').style.display='none';
+    const reply=data.content?.[0]?.text||'Something went wrong.';
+    appendMessage('ai',reply);
+    chatHistory.push({role:'assistant',content:reply});
+    if (chatHistory.length>20) chatHistory=chatHistory.slice(-20);
+  }catch(e){document.getElementById('chat-typing').style.display='none';appendMessage('ai','Connection error. Check your API key in Settings.');}
+}
+function appendMessage(role,text){
+  const el=document.getElementById('chat-messages');
+  const div=document.createElement('div');div.className=`chat-msg ${role}`;
+  div.innerHTML=`<div class="chat-bubble">${text.replace(/\n/g,'<br>')}</div>`;
+  el.appendChild(div);scrollChat();
+}
+function scrollChat(){document.getElementById('chat-messages').scrollTop=document.getElementById('chat-messages').scrollHeight;}
+function quickPrompt(msg){document.getElementById('chat-input').value=msg;sendChat();}
 
-  const key = S.get('api_key');
-  if (!key) {
-    document.getElementById('chat-typing').style.display = 'none';
-    appendMessage('ai', "I need an Anthropic API key to work. Go to Settings and paste your key — it's stored only in your browser. Get one free at console.anthropic.com.");
-    return;
-  }
+// ── MODALS ────────────────────────────────────────────────
+function openModal(id){document.getElementById(id).classList.add('open');}
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+document.querySelectorAll('.modal-backdrop').forEach(el=>{el.addEventListener('click',e=>{if(e.target===el)el.classList.remove('open');});});
 
-  const context = buildContext();
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-client-side-keys': 'true' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 600,
-        system: `You are Liam's personal life coach embedded in his dashboard. You have full access to his data. Be concise, direct, and motivating — you know him well. His background: 22-year-old aerospace engineering graduate based in Newcastle, UK. Ambitious — wants to work in high finance in Hong Kong/Singapore, then build a conglomerate. Runs ultra trails competitively. Here is his current data:\n\n${context}`,
-        messages: buildHistory(msg)
-      })
-    });
-    const data = await res.json();
-    document.getElementById('chat-typing').style.display = 'none';
-    const reply = data.content?.[0]?.text || 'Sorry, something went wrong.';
-    appendMessage('ai', reply);
-    storeChatHistory(msg, reply);
-  } catch(e) {
-    document.getElementById('chat-typing').style.display = 'none';
-    appendMessage('ai', 'Connection error. Check your API key in Settings.');
-  }
+// ── DATA BACKUP ───────────────────────────────────────────
+function exportData(){
+  const data={goals,runs,books,weights,dates,holdings,exported:new Date().toISOString()};
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='dashboard-backup.json';a.click();
 }
-function buildContext() {
-  const activeGoals = goals.filter(g=>!g.done);
-  const doneGoals = goals.filter(g=>g.done);
-  const upcoming = getUpcomingDates(5);
-  const recentRuns = [...runs].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
-  const recentBooks = [...books].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
-  const latestWeight = weights.length ? weights[weights.length-1] : null;
-  return `ACTIVE GOALS (${activeGoals.length}): ${activeGoals.map(g=>`${g.title} [${g.cat}, ${g.progress||0}%, deadline:${g.deadline||'none'}${g.lastUpdate?', last update: '+g.lastUpdate:''}]`).join('; ')||'none'}
-COMPLETED GOALS (${doneGoals.length}): ${doneGoals.map(g=>g.title).join(', ')||'none'}
-UPCOMING DATES: ${upcoming.map(d=>`${d.name} in ${d.days} days`).join(', ')||'none'}
-RECENT TRAINING: ${recentRuns.map(r=>`Week of ${r.date}: ${r.km}km`).join(', ')||'none'}
-BOOKS THIS YEAR: ${books.filter(b=>b.date&&b.date.startsWith(new Date().getFullYear())).length} (${recentBooks.map(b=>b.title).join(', ')||'none'})
-WEIGHT: ${latestWeight ? latestWeight.kg+'kg ('+latestWeight.date+')' : 'not logged'}
-HOLDINGS: ${holdings.length} stocks`;
-}
-let chatHistory = [];
-function buildHistory(newMsg) {
-  chatHistory.push({role:'user',content:newMsg});
-  return chatHistory.slice(-10);
-}
-function storeChatHistory(msg, reply) {
-  chatHistory.push({role:'assistant',content:reply});
-  if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
-}
-function appendMessage(role, text) {
-  const el = document.getElementById('chat-messages');
-  const div = document.createElement('div');
-  div.className = `chat-msg ${role}`;
-  div.innerHTML = `<div class="chat-bubble">${text.replace(/\n/g,'<br>')}</div>`;
-  el.appendChild(div);
-  scrollChat();
-}
-function scrollChat() {
-  const el = document.getElementById('chat-messages');
-  el.scrollTop = el.scrollHeight;
-}
-function quickPrompt(msg) {
-  document.getElementById('chat-input').value = msg;
-  sendChat();
-}
-function saveApiKey(v) { S.set('api_key', v); }
-
-// ===================== MODAL HELPERS =====================
-function openModal(id) { document.getElementById(id).classList.add('open'); }
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-document.querySelectorAll('.modal-backdrop').forEach(el => {
-  el.addEventListener('click', e => { if (e.target === el) el.classList.remove('open'); });
-});
-
-// ===================== DATA EXPORT/IMPORT =====================
-function exportData() {
-  const data = { goals, runs, books, weights, dates, holdings, exported: new Date().toISOString() };
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'dashboard-backup.json'; a.click();
-}
-function importData(e) {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = ev => {
-    try {
-      const d = JSON.parse(ev.target.result);
-      if (confirm('Import data? This will replace your current data.')) {
-        goals = d.goals||[]; runs = d.runs||[]; books = d.books||[]; weights = d.weights||[]; dates = d.dates||[]; holdings = d.holdings||[];
-        save(); renderHome(); alert('Data imported.');
-      }
-    } catch(e) { alert('Invalid file.'); }
+async function importData(e){
+  const f=e.target.files[0];if (!f) return;
+  const r=new FileReader();
+  r.onload=async ev=>{
+    try{
+      const d=JSON.parse(ev.target.result);
+      if (!confirm('Import? This replaces current data.')) return;
+      goals=d.goals||[];runs=d.runs||[];books=d.books||[];weights=d.weights||[];dates=d.dates||[];holdings=d.holdings||[];
+      setSyncStatus('syncing','Uploading to cloud…');
+      for (const g of goals) await dbUpsert('goals',g);
+      for (const r2 of runs) await dbUpsert('runs',r2);
+      for (const b of books) await dbUpsert('books',b);
+      for (const w of weights) await dbUpsert('weights',w);
+      for (const d2 of dates) await dbUpsert('dates',d2);
+      for (const h of holdings) await dbUpsert('holdings',h);
+      setSyncStatus('synced','Import complete.');
+      renderHome(); alert('Data imported and synced.');
+    }catch(e2){alert('Invalid file.');}
   };
   r.readAsText(f);
 }
-function clearData() {
-  goals=[]; runs=[]; books=[]; weights=[]; dates=[]; holdings=[];
-  save(); renderHome(); alert('All data cleared.');
-}
 
-// ===================== UTILS =====================
-function uid() { return Math.random().toString(36).slice(2,10); }
-function today() { return new Date().toISOString().slice(0,10); }
+// ── UTILS ─────────────────────────────────────────────────
+function uid(){return Math.random().toString(36).slice(2,10);}
+function today(){return new Date().toISOString().slice(0,10);}
 
-// ===================== INIT =====================
-function init() {
-  setTheme(currentTheme);
-  const bgImg = S.get('bg_image');
-  if (bgImg) { document.getElementById('bg-layer').style.backgroundImage = `url('${bgImg}')`; }
-  const bgOp = S.get('bg_opacity'); if (bgOp) document.getElementById('bg-layer').style.opacity = bgOp/100;
-  const bgBl = S.get('bg_blur'); if (bgBl) document.getElementById('bg-layer').style.filter = `blur(${bgBl}px)`;
-  renderHome();
-  setInterval(() => { if (document.getElementById('page-home').classList.contains('active')) renderHome(); }, 60000);
+// ── INIT ──────────────────────────────────────────────────
+async function init(){
+  const t=localStorage.getItem('theme')||'dark';
+  setTheme(t);
+  const bgImg=localStorage.getItem('bg_image');if(bgImg)applyBg(bgImg);
+  const bgOp=localStorage.getItem('bg_opacity');if(bgOp){document.getElementById('bg-layer').style.opacity=bgOp/100;}
+  const bgBl=localStorage.getItem('bg_blur');if(bgBl){document.getElementById('bg-layer').style.filter=`blur(${bgBl}px)`;}
+  await syncAll();
+  setInterval(syncAll, 5*60*1000);
 }
 init();
 </script>
